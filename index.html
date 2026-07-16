@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,68 +7,95 @@
     <title>ElShams | Your next place, brilliantly found</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="mahmoudia.css" />
     <link rel="stylesheet" href="social-modal.css" />
     <link rel="stylesheet" href="elshams-theme.css" />
   </head>
   <body>
+    <!-- Language Selection Pop-up -->
+    <div class="social-modal" id="lang-modal" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="modal-backdrop"></div>
+      <section class="modal-card lang-card" style="text-align: center;">
+        <span class="modal-star">✦</span>
+        <h2 style="font-size: 36px; margin-bottom: 12px;">Welcome · <em>مرحباً</em></h2>
+        <p style="margin-bottom: 28px;">Please choose your preferred language to explore ElShams.<br />يرجى اختيار اللغة المفضلة لاستكشاف عقارات الشمس.</p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <button type="button" class="primary-button" onclick="selectLanguage('en')">English <span>→</span></button>
+          <button type="button" class="primary-button" onclick="selectLanguage('ar')" style="font-family: 'Cairo', sans-serif;">العربية <span>←</span></button>
+        </div>
+      </section>
+    </div>
+
     <header class="site-header">
       <a class="brand" href="#top" aria-label="ElShams home"><img class="brand-image" src="assets/elshams-maha-farouk.jpg" alt="ElShams" /><span>ElShams</span></a>
-      <nav aria-label="Main navigation"><a href="#why-us">Why ElShams</a><a href="#areas">Areas</a><a href="#contact">Contact</a></nav>
-      <a class="header-cta" href="#contact">Find my home <span>↗</span></a>
+      <nav aria-label="Main navigation">
+        <a href="#why-us" data-i18n="nav_why">Why ElShams</a>
+        <a href="#areas" data-i18n="nav_areas">Areas</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
+      </nav>
+      <a class="header-cta" href="#contact"><span data-i18n="nav_cta">Find my home</span> <span class="dir-arrow">↗</span></a>
     </header>
 
     <main id="top">
       <section class="hero">
         <div class="sun-orbit orbit-one"></div><div class="sun-orbit orbit-two"></div>
         <div class="hero-copy">
-          <p class="eyebrow"><span></span> Mahmoudia real estate, made personal</p>
-          <h1>Find a place<br />that feels like <em>sunshine.</em></h1>
-          <p class="hero-text">Tell us what home means to you. Our Mahmoudia experts will curate options that match your life, your taste, and your budget.</p>
-          <a href="#contact" class="primary-button">Start your search <span>→</span></a>
+          <p class="eyebrow"><span></span> <span data-i18n="hero_eyebrow">Mahmoudia real estate, made personal</span></p>
+          <h1 data-i18n="hero_title">Find a place<br />that feels like <em>sunshine.</em></h1>
+          <p class="hero-text" data-i18n="hero_text">Tell us what home means to you. Our Mahmoudia experts will curate options that match your life, your taste, and your budget.</p>
+          <a href="#contact" class="primary-button"><span data-i18n="hero_btn">Start your search</span> <span class="dir-arrow">→</span></a>
         </div>
         <div class="hero-visual" aria-label="ElShams real estate showcase">
           <div class="brand-slider">
             <figure class="brand-slide is-active"><img src="assets/elshams-maha-farouk.jpg" alt="ElShams Maha Farouk brand identity" /></figure>
             <figure class="brand-slide"><img src="assets/elshams-property.jpg" alt="ElShams real estate property" /></figure>
-            <div class="slider-label"><span>ELSHAMS</span><p>Mahmoudia<br /><strong>Real Estate</strong></p></div>
+            <div class="slider-label"><span data-i18n="slider_sub">ELSHAMS</span><p data-i18n="slider_title">Mahmoudia<br /><strong>Real Estate</strong></p></div>
             <div class="slider-dots" aria-label="Image slideshow"><span class="is-active"></span><span></span></div>
           </div>
         </div>
-        <div class="hero-foot"><span>SCROLL TO EXPLORE</span><span class="scroll-line"></span><span>EST. 2011 · MAHMOUDIA</span></div>
+        <div class="hero-foot"><span data-i18n="foot_scroll">SCROLL TO EXPLORE</span><span class="scroll-line"></span><span data-i18n="foot_est">EST. 2011 · MAHMOUDIA</span></div>
       </section>
 
       <section class="stats" id="why-us">
-        <div><strong>14+</strong><span>Years guiding<br />buyers home</span></div>
-        <div><strong>2,400</strong><span>Families matched<br />with a home</span></div>
-        <div><strong>1</strong><span>City we know<br />by heart</span></div>
-        <p>We believe the best properties are discovered through listening first.</p>
+        <div><strong>14+</strong><span data-i18n="stat_1">Years guiding<br />buyers home</span></div>
+        <div><strong>2,400</strong><span data-i18n="stat_2">Families matched<br />with a home</span></div>
+        <div><strong>1</strong><span data-i18n="stat_3">City we know<br />by heart</span></div>
+        <p data-i18n="stat_text">We believe the best properties are discovered through listening first.</p>
       </section>
 
       <section class="areas" id="areas">
-        <div class="section-heading"><p class="eyebrow"><span></span> Local knowledge, lasting value</p><h2>Discover life in<br /><em>Mahmoudia.</em></h2></div>
+        <div class="section-heading"><p class="eyebrow"><span></span> <span data-i18n="areas_eyebrow">Local knowledge, lasting value</span></p><h2 data-i18n="areas_title">Discover life in<br /><em>Mahmoudia.</em></h2></div>
         <div class="area-grid">
-          <article class="area-card card-mahmoudia"><span>El Beheira, Egypt</span><h3>Mahmoudia</h3><p>Homes selected for the way you want to live.</p><a href="#contact">Explore homes <b>→</b></a></article>
+          <article class="area-card card-mahmoudia"><span data-i18n="area_sub">El Beheira, Egypt</span><h3 data-i18n="area_title">Mahmoudia</h3><p data-i18n="area_text">Homes selected for the way you want to live.</p><a href="#contact"><span data-i18n="area_btn">Explore homes</span> <b class="dir-arrow">→</b></a></article>
         </div>
       </section>
 
       <section class="contact" id="contact">
-        <div class="contact-intro"><p class="eyebrow"><span></span> Your search starts here</p><h2>Tell us a little<br />about your <em>dream.</em></h2><p>One of our property advisors will be in touch within one business day with opportunities tailored to you.</p><div class="contact-note"><span>✦</span><p>Your details are private and used only to help with your property search.</p></div></div>
+        <div class="contact-intro"><p class="eyebrow"><span></span> <span data-i18n="contact_eyebrow">Your search starts here</span></p><h2 data-i18n="contact_title">Tell us a little<br />about your <em>dream.</em></h2><p data-i18n="contact_text">One of our property advisors will be in touch within one business day with opportunities tailored to you.</p><div class="contact-note"><span>✦</span><p data-i18n="contact_note">Your details are private and used only to help with your property search.</p></div></div>
         <form id="lead-form" class="lead-form" novalidate>
-          <label>Full name<input id="name" name="name" type="text" placeholder="How should we call you?" autocomplete="name" required /></label>
-          <label>Mobile phone<input id="phone" name="phone" type="tel" placeholder="e.g. +20 10 1234 5678" autocomplete="tel" required /></label>
-          <label>Your buying budget<select id="budget" name="budget" required><option value="" selected disabled>Select a range</option><option value="Under EGP 3M">Under EGP 3M</option><option value="EGP 3M – 6M">EGP 3M – 6M</option><option value="EGP 6M – 10M">EGP 6M – 10M</option><option value="EGP 10M – 20M">EGP 10M – 20M</option><option value="Above EGP 20M">Above EGP 20M</option></select></label>
-          <button class="submit-button" type="submit">Connect me with an advisor <span>→</span></button>
+          <label><span data-i18n="label_name">Full name</span><input id="name" name="name" type="text" placeholder="How should we call you?" autocomplete="name" required /></label>
+          <label><span data-i18n="label_phone">Mobile phone</span><input id="phone" name="phone" type="tel" placeholder="e.g. +20 10 1234 5678" autocomplete="tel" required /></label>
+          <label><span data-i18n="label_budget">Your buying budget</span>
+            <select id="budget" name="budget" required>
+              <option value="" selected disabled data-i18n="opt_default">Select a range</option>
+              <option value="Under EGP 3M" data-i18n="opt_1">Under EGP 3M</option>
+              <option value="EGP 3M – 6M" data-i18n="opt_2">EGP 3M – 6M</option>
+              <option value="EGP 6M – 10M" data-i18n="opt_3">EGP 6M – 10M</option>
+              <option value="EGP 10M – 20M" data-i18n="opt_4">EGP 10M – 20M</option>
+              <option value="Above EGP 20M" data-i18n="opt_5">Above EGP 20M</option>
+            </select>
+          </label>
+          <button class="submit-button" type="submit"><span data-i18n="form_btn">Connect me with an advisor</span> <span class="dir-arrow">→</span></button>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
       </section>
     </main>
     <footer>
       <a class="brand" href="#top"><img class="brand-image" src="assets/elshams-maha-farouk.jpg" alt="ElShams" /><span>ElShams</span></a>
-      <p>© 2026 ElShams Real Estate. Made for better beginnings.</p>
-      <p class="site-credit">Website by <strong>Amr Ahmed AbdElrheem</strong> · <a href="https://wa.me/201019332065" target="_blank" rel="noopener noreferrer">WhatsApp</a> · <a href="https://www.linkedin.com/in/amr-ahmed-a18aa73b6" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+      <p data-i18n="footer_copy">© 2026 ElShams Real Estate. Made for better beginnings.</p>
+      <p class="site-credit"><span data-i18n="footer_credit">Website by</span> <strong>Amr Ahmed AbdElrheem</strong> · <a href="https://wa.me/201019332065" target="_blank" rel="noopener noreferrer">WhatsApp</a> · <a href="https://www.linkedin.com/in/amr-ahmed-a18aa73b6" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="#" onclick="openLangModal(); return false;" style="color: #e5bf69;">🌐 Change Language</a></p>
       <div><a href="https://www.facebook.com/el.shams.408946" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://wa.me/201094941189" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
     </footer>
 
@@ -77,12 +104,12 @@
       <section class="modal-card">
         <button class="modal-close" type="button" aria-label="Close" data-close-modal>×</button>
         <span class="modal-star">✦</span>
-        <p class="eyebrow"><span></span> Stay in touch</p>
-        <h2 id="social-title">Your request is<br />on its <em>way.</em></h2>
-        <p>While an ElShams advisor prepares your options, follow us for the latest Mahmoudia homes.</p>
+        <p class="eyebrow"><span></span> <span data-i18n="modal_eyebrow">Stay in touch</span></p>
+        <h2 id="social-title" data-i18n="modal_title">Your request is<br />on its <em>way.</em></h2>
+        <p data-i18n="modal_text">While an ElShams advisor prepares your options, follow us for the latest Mahmoudia homes.</p>
         <div class="social-links">
-          <a href="https://www.facebook.com/el.shams.408946" target="_blank" rel="noopener noreferrer" aria-label="ElShams Facebook">Facebook <b>↗</b></a>
-          <a href="https://wa.me/201094941189" target="_blank" rel="noopener noreferrer" aria-label="Contact ElShams on WhatsApp">WhatsApp <b>↗</b></a>
+          <a href="https://www.facebook.com/el.shams.408946" target="_blank" rel="noopener noreferrer" aria-label="ElShams Facebook">Facebook <b class="dir-arrow">↗</b></a>
+          <a href="https://wa.me/201094941189" target="_blank" rel="noopener noreferrer" aria-label="Contact ElShams on WhatsApp">WhatsApp <b class="dir-arrow">↗</b></a>
         </div>
       </section>
     </div>
