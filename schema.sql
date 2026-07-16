@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS property_leads (
+  id BIGSERIAL PRIMARY KEY,
+  full_name VARCHAR(120) NOT NULL,
+  mobile_phone VARCHAR(30) NOT NULL,
+  budget VARCHAR(50) NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
