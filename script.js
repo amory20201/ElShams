@@ -50,7 +50,9 @@ const translations = {
     footer_credit: "Website by",
     modal_eyebrow: "Stay in touch",
     modal_title: "Your request is<br />on its <em>way.</em>",
-    modal_text: "While an ElShams advisor prepares your options, follow us for the latest Mahmoudia homes."
+    modal_text: "While an ElShams advisor prepares your options, follow us for the latest Mahmoudia homes.",
+    promo_1_sub: "Find the perfect home within your budget.",
+    promo_2_sub: "Modern spaces designed for family living.",
   },
   ar: {
     nav_why: "لماذا الشمس",
@@ -102,7 +104,9 @@ const translations = {
     footer_credit: "تصميم الموقع بواسطة",
     modal_eyebrow: "ابق على تواصل",
     modal_title: "طلبك في<br />طريقه <em>إلينا.</em>",
-    modal_text: "بينما يقوم مستشار الشمس بتجهيز خياراتك، تابعنا لمعرفة أحدث منازل المحمودية."
+    modal_text: "بينما يقوم مستشار الشمس بتجهيز خياراتك، تابعنا لمعرفة أحدث منازل المحمودية.",
+    promo_1_sub: "اكتشف المنزل المثالي ضمن ميزانيتك.",
+    promo_2_sub: "مساحات حديثة مصممة للحياة العائلية.",
   }
 };
 
