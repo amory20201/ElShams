@@ -256,6 +256,18 @@ if (brandSlides.length > 1) {
 if (form) {
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
+    // 1. Paste your copied Google Web App URL here:
+    const scriptURL = 'https://script.google.com/macros/s/YOUR_ACTUAL_SCRIPT_ID_HERE/exec';
+    
+    // 2. We use mode: 'no-cors' and text/plain to bypass browser CORS blocking
+    const response = await fetch(scriptURL, {
+      method: 'POST',
+      mode: 'no-cors', 
+      headers: { 
+        'Content-Type': 'text/plain;charset=utf-8' 
+      },
+      body: JSON.stringify(payload)
+    });
     if (!form.checkValidity()) { form.reportValidity(); return; }
     const button = form.querySelector('button');
     button.disabled = true;
@@ -287,7 +299,8 @@ if (form) {
     openSocialModal();
   } catch (error) {
     status.textContent = currentLang === 'ar' ? 'تعذر إرسال طلبك. يرجى المحاولة مرة أخرى قريباً.' : 'We could not send your request. Please try again shortly.';
-  } finally { 
-    button.disabled = false; 
-  };
+  } finally {
+    button.disabled = false;
+  }
+  });
 }

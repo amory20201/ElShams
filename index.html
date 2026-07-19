@@ -99,10 +99,20 @@
 
           <!-- Dynamic Budget Dropdown -->
           <label><span data-i18n="label_budget">Your budget</span>
-            <select id="budget" name="budget" required>
-              <option value="" selected disabled data-i18n="opt_default">Select a range</option>
-              <!-- JavaScript will populate this automatically based on Rent or Sale -->
-            </select>
+           <!-- Check that name="prop_type" is included -->
+<select id="prop_type" name="prop_type" required>
+  ...
+</select>
+
+<!-- Check that name="trans_type" is included -->
+<select id="trans_type" name="trans_type" required onchange="updateBudgetOptions()">
+  ...
+</select>
+
+<!-- Check that name="budget" is included -->
+<select id="budget" name="budget" required>
+  ...
+</select>
           </label>
 
           <button class="submit-button" type="submit"><span data-i18n="form_btn">Connect me with an advisor</span> <span class="dir-arrow">→</span></button>
