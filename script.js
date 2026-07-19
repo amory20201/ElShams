@@ -38,8 +38,6 @@ const translations = {
     opt_trans_default: "Select Rent or Sale",
     opt_trans_sale: "Buy / Sale",
     opt_trans_rent: "Rent",
-    label_budget: "Your budget",
-    opt_default: "Select a range",
     form_btn: "Connect me with an advisor",
     footer_copy: "© 2026 ElShams Real Estate. Made for better beginnings.",
     footer_credit: "Website by",
@@ -85,8 +83,6 @@ const translations = {
     opt_trans_default: "اختر إيجار أو شراء",
     opt_trans_sale: "شراء / تمليك",
     opt_trans_rent: "إيجار",
-    label_budget: "الميزانية المتاحة",
-    opt_default: "اختر النطاق",
     form_btn: "وصلني بمستشار عقاري",
     footer_copy: "© 2026 عقارات الشمس. صنع لبدايات أفضل.",
     footer_credit: "تصميم الموقع بواسطة",
@@ -95,67 +91,6 @@ const translations = {
     modal_text: "بينما يقوم مستشار الشمس بتجهيز خياراتك، تابعنا لمعرفة أحدث منازل المحمودية."
   }
 };
-
-// Budget Tiers (Sale vs Rent)
-const budgetOptions = {
-  Sale: {
-    en: [
-      "700k – 1M EGP",
-      "1M – 1.2M EGP",
-      "1.2M – 2M EGP",
-      "2M – 3M EGP",
-      "3M – 5M EGP"
-    ],
-    ar: [
-      "700 ألف – 1 مليون جنيه",
-      "1 – 1.2 مليون جنيه",
-      "1.2 – 2 مليون جنيه",
-      "2 – 3 مليون جنيه",
-      "3 – 5 مليون جنيه"
-    ]
-  },
-  Rent: {
-    en: [
-      "1500 – 2000 EGP / month",
-      "2100 – 3000 EGP / month",
-      "3100 – 4000 EGP / month",
-      "4100 – 5000 EGP / month",
-      "5100 – 6000 EGP / month",
-      "6100 – 7000 EGP / month",
-      "Above 7000 EGP / month"
-    ],
-    ar: [
-      "1500 – 2000 جنيه / شهرياً",
-      "2100 – 3000 جنيه / شهرياً",
-      "3100 – 4000 جنيه / شهرياً",
-      "4100 – 5000 جنيه / شهرياً",
-      "5100 – 6000 جنيه / شهرياً",
-      "6100 – 7000 جنيه / شهرياً",
-      "أكثر من 7000 جنيه / شهرياً"
-    ]
-  }
-};
-
-// Dynamic Budget Swapping
-function updateBudgetOptions() {
-  const transSelect = document.querySelector('#trans_type');
-  const budgetSelect = document.querySelector('#budget');
-  if (!transSelect || !budgetSelect) return;
-
-  const selectedTrans = transSelect.value || "Sale";
-  const lang = document.documentElement.getAttribute('lang') || 'en';
-  const options = budgetOptions[selectedTrans][lang] || budgetOptions["Sale"]["en"];
-  
-  const defaultText = translations[lang]["opt_default"] || "Select a range";
-  const currentSelection = budgetSelect.value;
-
-  // Rebuild options
-  budgetSelect.innerHTML = `<option value="" selected disabled>${defaultText}</option>`;
-  options.forEach(opt => {
-    const isSelected = (opt === currentSelection) ? "selected" : "";
-    budgetSelect.innerHTML += `<option value="${opt}" ${isSelected}>${opt}</option>`;
-  });
-}
 
 // Language Handling Logic
 const langModal = document.querySelector('#lang-modal');
@@ -195,9 +130,6 @@ function applyLanguage(lang) {
   const phoneInput = document.querySelector('#phone');
   if (nameInput) nameInput.placeholder = lang === 'ar' ? "كيف نحب أن نناديك؟" : "How should we call you?";
   if (phoneInput) phoneInput.placeholder = lang === 'ar' ? "مثال: 5678 1234 10 20+" : "e.g. +20 10 1234 5678";
-
-  // Re-translate the budget dropdown automatically
-  updateBudgetOptions();
 }
 
 // Check if user has selected a language previously
@@ -209,8 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Show pop-up on very first visit
     setTimeout(openLangModal, 500);
   }
-  // Initialize default budget options
-  updateBudgetOptions();
 });
 
 // Existing Modal & Form Logic
@@ -256,23 +186,19 @@ if (brandSlides.length > 1) {
 if (form) {
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    // 1. Paste your copied Google Web App URL here:
-    const scriptURL = 'https://script.google.com/macros/s/YOUR_ACTUAL_SCRIPT_ID_HERE/exec';
     
-    // 2. We use mode: 'no-cors' and text/plain to bypass browser CORS blocking
-    const response = await fetch(scriptURL, {
-      method: 'POST',
-      mode: 'no-cors', 
-      headers: { 
-        'Content-Type': 'text/plain;charset=utf-8' 
-      },
-      body: JSON.stringify(payload)
-    });
-    if (!form.checkValidity()) { form.reportValidity(); return; }
+    // Validate form fields BEFORE sending anything
+    if (!form.checkValidity()) { 
+      form.reportValidity(); 
+      return; 
+    }
+    
     const button = form.querySelector('button');
     button.disabled = true;
     const currentLang = document.documentElement.getAttribute('lang') || 'en';
     status.textContent = currentLang === 'ar' ? 'جاري إرسال طلبك…' : 'Sending your request…';
+    
+    // Gather form data AFTER checking validity
     const payload = Object.fromEntries(new FormData(form));
     
     if (window.location.protocol === 'file:') {
@@ -282,25 +208,25 @@ if (form) {
       button.disabled = false;
       return;
     }
-   try {
-    // PASTE YOUR GOOGLE SCRIPT URL BELOW INSIDE THE QUOTE MARKS:
-    const scriptURL = 'https://script.google.com/macros/s/AKfycby3caTgOrfODKAJnGEze34S5cELRXJvReXRfsXRk4gme2GyGej_4m5y3z-775XSAwk/exec';
     
-    const response = await fetch(scriptURL, {
-      method: 'POST',
-      // CRITICAL TIP: Using 'text/plain' prevents browser CORS preflight errors with Google Apps Script!
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(payload)
-    });
-    
-    // If successful, reset the form and show the thank-you modal
-    form.reset();
-    status.textContent = currentLang === 'ar' ? 'شكراً لك — سيتواصل معك أحد مستشاري الشمس قريباً.' : 'Thank you — an ElShams advisor will contact you shortly.';
-    openSocialModal();
-  } catch (error) {
-    status.textContent = currentLang === 'ar' ? 'تعذر إرسال طلبك. يرجى المحاولة مرة أخرى قريباً.' : 'We could not send your request. Please try again shortly.';
-  } finally {
-    button.disabled = false;
-  }
+    try {
+      const scriptURL = 'https://script.google.com/macros/s/AKfycby3caTgOrfODKAJnGEze34S5cELRXJvReXRfsXRk4gme2GyGej_4m5y3z-775XSAwk/exec';
+      
+      const response = await fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors', 
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      });
+      
+      // If successful, reset the form and show the thank-you modal
+      form.reset();
+      status.textContent = currentLang === 'ar' ? 'شكراً لك — سيتواصل معك أحد مستشاري الشمس قريباً.' : 'Thank you — an ElShams advisor will contact you shortly.';
+      openSocialModal();
+    } catch (error) {
+      status.textContent = currentLang === 'ar' ? 'تعذر إرسال طلبك. يرجى المحاولة مرة أخرى قريباً.' : 'We could not send your request. Please try again shortly.';
+    } finally {
+      button.disabled = false;
+    }
   });
 }
