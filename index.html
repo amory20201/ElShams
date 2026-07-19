@@ -74,11 +74,10 @@
 
       <section class="contact" id="contact">
         <div class="contact-intro"><p class="eyebrow"><span></span> <span data-i18n="contact_eyebrow">Your search starts here</span></p><h2 data-i18n="contact_title">Tell us a little<br />about your <em>dream.</em></h2><p data-i18n="contact_text">One of our property advisors will be in touch within one business day with opportunities tailored to you.</p><div class="contact-note"><span>✦</span><p data-i18n="contact_note">Your details are private and used only to help with your property search.</p></div></div>
-    <form id="lead-form" class="lead-form" novalidate>
+  <form id="lead-form" class="lead-form" novalidate>
           <label><span data-i18n="label_name">Full name</span><input id="name" name="name" type="text" placeholder="How should we call you?" autocomplete="name" required /></label>
           <label><span data-i18n="label_phone">Mobile phone</span><input id="phone" name="phone" type="tel" placeholder="e.g. +20 10 1234 5678" autocomplete="tel" required /></label>
           
-          <!-- NEW: Property Type -->
           <label><span data-i18n="label_prop_type">Property type</span>
             <select id="prop_type" name="prop_type" required>
               <option value="" selected disabled data-i18n="opt_prop_default">Select property type</option>
@@ -88,31 +87,23 @@
             </select>
           </label>
 
-          <!-- NEW: Rent or Sale -->
           <label><span data-i18n="label_trans_type">Transaction type</span>
-            <select id="trans_type" name="trans_type" required onchange="updateBudgetOptions()">
+            <select id="trans_type" name="trans_type" required>
               <option value="" selected disabled data-i18n="opt_trans_default">Select Rent or Sale</option>
               <option value="Sale" data-i18n="opt_trans_sale">Buy / Sale</option>
               <option value="Rent" data-i18n="opt_trans_rent">Rent</option>
             </select>
           </label>
 
-          <!-- Dynamic Budget Dropdown -->
           <label><span data-i18n="label_budget">Your budget</span>
-           <!-- Check that name="prop_type" is included -->
-<select id="prop_type" name="prop_type" required>
-  ...
-</select>
-
-<!-- Check that name="trans_type" is included -->
-<select id="trans_type" name="trans_type" required onchange="updateBudgetOptions()">
-  ...
-</select>
-
-<!-- Check that name="budget" is included -->
-<select id="budget" name="budget" required>
-  ...
-</select>
+            <select id="budget" name="budget" required>
+              <option value="" selected disabled data-i18n="opt_default">Select a range</option>
+              <option value="700k - 1M EGP" data-i18n="opt_1">700k – 1M EGP</option>
+              <option value="1M - 1.2M EGP" data-i18n="opt_2">1M – 1.2M EGP</option>
+              <option value="1.2M - 2M EGP" data-i18n="opt_3">1.2M – 2M EGP</option>
+              <option value="2M - 3M EGP" data-i18n="opt_4">2M – 3M EGP</option>
+              <option value="3M - 5M EGP" data-i18n="opt_5">3M – 5M EGP</option>
+            </select>
           </label>
 
           <button class="submit-button" type="submit"><span data-i18n="form_btn">Connect me with an advisor</span> <span class="dir-arrow">→</span></button>
