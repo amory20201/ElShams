@@ -270,16 +270,24 @@ if (form) {
       button.disabled = false;
       return;
     }
-    try {
-      const response = await fetch('/api/leads', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
-      });
-      if (!response.ok) throw new Error('Unable to save your request');
-      form.reset();
-      status.textContent = currentLang === 'ar' ? 'شكراً لك — سيتواصل معك أحد مستشاري الشمس قريباً.' : 'Thank you — an ElShams advisor will contact you shortly.';
-      openSocialModal();
-    } catch (error) {
-      status.textContent = currentLang === 'ar' ? 'تعذر إرسال طلبك. يرجى المحاولة مرة أخرى قريباً.' : 'We could not send your request. Please try again shortly.';
-    } finally { button.disabled = false; }
-  });
+   try {
+    // PASTE YOUR GOOGLE SCRIPT URL BELOW INSIDE THE QUOTE MARKS:
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby3caTgOrfODKAJnGEze34S5cELRXJvReXRfsXRk4gme2GyGej_4m5y3z-775XSAwk/exec';
+    
+    const response = await fetch(scriptURL, {
+      method: 'POST',
+      // CRITICAL TIP: Using 'text/plain' prevents browser CORS preflight errors with Google Apps Script!
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+    
+    // If successful, reset the form and show the thank-you modal
+    form.reset();
+    status.textContent = currentLang === 'ar' ? 'شكراً لك — سيتواصل معك أحد مستشاري الشمس قريباً.' : 'Thank you — an ElShams advisor will contact you shortly.';
+    openSocialModal();
+  } catch (error) {
+    status.textContent = currentLang === 'ar' ? 'تعذر إرسال طلبك. يرجى المحاولة مرة أخرى قريباً.' : 'We could not send your request. Please try again shortly.';
+  } finally { 
+    button.disabled = false; 
+  };
 }
