@@ -17,6 +17,8 @@ const translations = {
     stat_2: "Families matched<br />with a home",
     stat_3: "City we know<br />by heart",
     stat_text: "We believe the best properties are discovered through listening first.",
+    promo_1_sub: "Find the perfect home within your budget.",
+    promo_2_sub: "Modern spaces designed for family living.",
     areas_eyebrow: "Local knowledge, lasting value",
     areas_title: "Discover life in<br /><em>Mahmoudia.</em>",
     area_sub: "El Beheira, Egypt",
@@ -39,20 +41,12 @@ const translations = {
     opt_trans_sale: "Buy / Sale",
     opt_trans_rent: "Rent",
     label_budget: "Your budget",
-    opt_default: "Select a range",
-    opt_1: "700k – 1M EGP",
-    opt_2: "1M – 1.2M EGP",
-    opt_3: "1.2M – 2M EGP",
-    opt_4: "2M – 3M EGP",
-    opt_5: "3M – 5M EGP",
     form_btn: "Connect me with an advisor",
     footer_copy: "© 2026 ElShams Real Estate. Made for better beginnings.",
     footer_credit: "Website by",
     modal_eyebrow: "Stay in touch",
     modal_title: "Your request is<br />on its <em>way.</em>",
-    modal_text: "While an ElShams advisor prepares your options, follow us for the latest Mahmoudia homes.",
-    promo_1_sub: "Find the perfect home within your budget.",
-    promo_2_sub: "Modern spaces designed for family living.",
+    modal_text: "While an ElShams advisor prepares your options, follow us for the latest Mahmoudia homes."
   },
   ar: {
     nav_why: "لماذا الشمس",
@@ -71,6 +65,8 @@ const translations = {
     stat_2: "عائلة وجدت<br />منزل أحلامها",
     stat_3: "مدينة نعرفها<br />عن ظهر قلب",
     stat_text: "نحن نؤمن بأن أفضل العقارات يتم اكتشافها من خلال الاستماع أولاً.",
+    promo_1_sub: "اكتشف المنزل المثالي ضمن ميزانيتك.",
+    promo_2_sub: "مساحات حديثة مصممة للحياة العائلية.",
     areas_eyebrow: "خبرة محلية، وقيمة مستدامة",
     areas_title: "اكتشف الحياة في<br /><em>المحمودية.</em>",
     area_sub: "البحيرة، مصر",
@@ -93,20 +89,12 @@ const translations = {
     opt_trans_sale: "شراء / تمليك",
     opt_trans_rent: "إيجار",
     label_budget: "الميزانية المتاحة",
-    opt_default: "اختر النطاق",
-    opt_1: "700 ألف – 1 مليون جنيه",
-    opt_2: "1 – 1.2 مليون جنيه",
-    opt_3: "1.2 – 2 مليون جنيه",
-    opt_4: "2 – 3 مليون جنيه",
-    opt_5: "3 – 5 مليون جنيه",
     form_btn: "وصلني بمستشار عقاري",
     footer_copy: "© 2026 عقارات الشمس. صنع لبدايات أفضل.",
     footer_credit: "تصميم الموقع بواسطة",
     modal_eyebrow: "ابق على تواصل",
     modal_title: "طلبك في<br />طريقه <em>إلينا.</em>",
-    modal_text: "بينما يقوم مستشار الشمس بتجهيز خياراتك، تابعنا لمعرفة أحدث منازل المحمودية.",
-    promo_1_sub: "اكتشف المنزل المثالي ضمن ميزانيتك.",
-    promo_2_sub: "مساحات حديثة مصممة للحياة العائلية.",
+    modal_text: "بينما يقوم مستشار الشمس بتجهيز خياراتك، تابعنا لمعرفة أحدث منازل المحمودية."
   }
 };
 
@@ -143,11 +131,14 @@ function applyLanguage(lang) {
     }
   });
 
-  // Update input placeholders
+  // Update input placeholders dynamically
   const nameInput = document.querySelector('#name');
   const phoneInput = document.querySelector('#phone');
+  const budgetInput = document.querySelector('#budget');
+  
   if (nameInput) nameInput.placeholder = lang === 'ar' ? "كيف نحب أن نناديك؟" : "How should we call you?";
   if (phoneInput) phoneInput.placeholder = lang === 'ar' ? "مثال: 5678 1234 10 20+" : "e.g. +20 10 1234 5678";
+  if (budgetInput) budgetInput.placeholder = lang === 'ar' ? "مثال: 1,500,000 جنيه" : "e.g. 1,500,000 EGP";
 }
 
 // Check if user has selected a language previously
