@@ -131,13 +131,22 @@ if (sellForm) {
     window.open(`https://wa.me/201014973825?text=${whatsappMsg}`, '_blank');
   });
 }
-// --- تشغيل فورم التواصل (البحث عن عقار للمشترين) ---
+// --- تشغيل فورم التواصل (البحث عن عقار للمشترين) مع جوجل شيت والواتساب ---
 const leadForm = document.getElementById('lead-form');
 if (leadForm) {
-  leadForm.addEventListener('submit', (e) => {
-    e.preventDefault(); // عشان الصفحة متعملش ريفريش
+  leadForm.addEventListener('submit', async (e) => {
+    e.preventDefault(); // منع الصفحة من التحميل
 
-    // سحب البيانات اللي العميل كتبها
+    const submitBtn = leadForm.querySelector('.submit-button');
+    if(submitBtn) {
+       submitBtn.disabled = true;
+       submitBtn.innerHTML = '<span style="font-family: \'Cairo\', sans-serif;">جاري تسجيل بياناتك...</span>';
+    }
+
+    // تجميع البيانات من الفورم
+    const formData = new FormData(leadForm);
+    
+    // القيم الخاصة برسالة الواتساب
     const name = document.getElementById('name').value;
     const phone = document.getElementById('phone').value;
     const propType = document.getElementById('prop_type').value;
@@ -145,21 +154,36 @@ if (leadForm) {
     const budget = document.getElementById('budget').value;
     const requestedProp = document.getElementById('requested_property') ? document.getElementById('requested_property').value : 'استفسار عام';
 
-    // تغيير شكل الزرار عشان العميل يحس إنه اشتغل
-    const submitBtn = leadForm.querySelector('.submit-button');
-    if(submitBtn) {
-       submitBtn.innerHTML = '<span style="font-family: \'Cairo\', sans-serif;">جاري تحويلك للواتساب...</span>';
+    try {
+      // 1. إرسال البيانات لجوجل شيت (حط لينك السكريبت بتاعك هنا مكان الكلمة دي)
+      const googleSheetURL = 'https://docs.google.com/spreadsheets/d/1N4UeWRRXscPdQswfGmCGTgbHTUDihW9e0jye3CgAzYo/edit?usp=sharing'; 
+      
+      await fetch(googleSheetURL, {
+        method: 'POST',
+        body: formData
+      });
+
+      // 2. تجهيز رسالة الواتساب بعد نجاح التسجيل في الشيت
+      const whatsappMsg = `أهلاً عقارات الشمس، أنا ${name}.%0Aمحتاج: ${propType} (${transType})%0Aالميزانية في حدود: ${budget}%0Aالرقم: ${phone}%0Aالوحدة المطلوبة: ${requestedProp}`;
+      
+      // إرجاع الزرار لشكله الطبيعي
+      if(submitBtn) {
+         submitBtn.innerHTML = '<span style="font-family: \'Cairo\', sans-serif;">تم الإرسال بنجاح ✔️</span>';
+         submitBtn.disabled = false;
+      }
+      
+      // فتح الواتساب
+      window.open(`https://wa.me/201014973825?text=${whatsappMsg}`, '_blank');
+      
+      // تفريغ الفورم بعد الإرسال
+      leadForm.reset();
+
+    } catch (error) {
+      // لو حصل مشكلة في الإرسال
+      if(submitBtn) {
+         submitBtn.innerHTML = '<span style="font-family: \'Cairo\', sans-serif;">حدث خطأ، حاول مرة أخرى</span>';
+         submitBtn.disabled = false;
+      }
     }
-
-    // تجميع رسالة الواتساب اللي هتوصلك
-    const whatsappMsg = `أهلاً عقارات الشمس، أنا ${name}.%0Aمحتاج: ${propType} (${transType})%0Aالميزانية في حدود: ${budget}%0Aالرقم: ${phone}%0Aالوحدة المطلوبة: ${requestedProp}`;
-
-    // فتح الواتساب بتاعك بالرسالة جاهزة
-    window.open(`https://wa.me/201014973825?text=${whatsappMsg}`, '_blank');
-    
-    // إرجاع الزرار لشكله الطبيعي بعد الإرسال
-    setTimeout(() => {
-        if(submitBtn) submitBtn.innerHTML = '<span style="font-family: \'Cairo\', sans-serif;">تم الإرسال بنجاح ✔️</span>';
-    }, 2000);
   });
 }
