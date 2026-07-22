@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="List your property with ElShams Real Estate in Mahmoudia. We review and showcase your apartment or house to qualified buyers and renters." />
+    <meta property="og:title" content="List Your Property | ElShams Real Estate" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://elshams-real-estate.vercel.app/sell.html" />
+    <meta property="og:image" content="https://elshams-real-estate.vercel.app/assets/elshams-maha-farouk.jpg" />
+    <link rel="icon" href="assets/elshams-maha-farouk.jpg" type="image/jpeg" />
+    <title>اعرض عقارك | عقارات الشمس</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="elshams-theme.css" />
+  </head>
+  <body>
+    <header class="site-header site-header--dark">
+      <a class="brand" href="index.html"><img class="brand-image" src="assets/elshams-maha-farouk.jpg" alt="ElShams" /><span>ElShams</span></a>
+      <nav aria-label="Main navigation">
+        <a href="index.html">الرئيسية</a>
+        <a href="properties.html">الوحدات المتاحة</a>
+        <a href="sell.html" class="nav-link--active">اعرض عقارك</a>
+        <a href="guide.html">دليل المحمودية</a>
+        <a href="about.html">عن الشركة والتواصل</a>
+      </nav>
+      <a class="header-cta" href="about.html#contact">ابحث عن منزلي <span class="dir-arrow">↖</span></a>
+    </header>
+
+    <main>
+      <section class="hero" style="min-height: auto; padding: 100px 6.4vw 40px; text-align: center; display: block;">
+        <h1 style="font-family: 'Playfair Display', serif; font-size: 50px; color: var(--sand); margin-bottom: 20px;">
+          نعرف قيمة <em style="color: var(--lime);">عقارك السكني.</em>
+        </h1>
+        <p style="font-family: 'Cairo', sans-serif; color: var(--muted); max-width: 600px; margin: 0 auto; font-size: 18px;">
+          أدخل تفاصيل وحدتك السكنية أدناه، وسنقوم بمراجعتها والتواصل معك فوراً لعرضها على العملاء المهتمين.
+        </p>
+      </section>
+
+      <section class="contact" style="padding-top: 20px; padding-bottom: 80px; background: transparent;">
+        <!-- الفورم الاحترافية الجديدة -->
+        <form id="sell-form" class="lead-form sell-form" style="margin: 0 auto; background: var(--sand); border: 1px solid rgba(22, 59, 58, 0.1);" novalidate>
+
+          <label><span style="font-family: 'Cairo', sans-serif;">اسم المالك بالكامل</span>
+            <input id="sell_name" name="name" type="text" placeholder="الاسم الثنائي" required />
+          </label>
+
+          <label><span style="font-family: 'Cairo', sans-serif;">رقم الموبايل (واتساب)</span>
+            <input id="sell_phone" name="phone" type="tel" placeholder="مثال: 01014973825" required />
+          </label>
+
+          <label><span style="font-family: 'Cairo', sans-serif;">نوع العقار</span>
+            <select id="sell_prop_type" name="prop_type" required>
+              <option value="شقة" selected>شقة سكنية</option>
+              <option value="بيت/فيلا">بيت / فيلا كاملة</option>
+            </select>
+          </label>
+
+          <label><span style="font-family: 'Cairo', sans-serif;">العنوان والمواصفات بالتفصيل</span>
+            <textarea id="sell_details" name="requested_property" rows="3" placeholder="اكتب العنوان بالتفصيل، المساحة، عدد الغرف، ونوع التشطيب..." required class="sell-form-textarea"></textarea>
+          </label>
+
+          <label><span style="font-family: 'Cairo', sans-serif;">السعر المطلوب للبيع / الإيجار</span>
+            <input id="sell_price" name="budget" type="text" placeholder="مثال: 1,500,000 جنيه" required />
+          </label>
+
+          <!-- حقل مخفي عشان الداتابيز تعرف إنه بائع مش مشتري -->
+          <input type="hidden" name="trans_type" value="عقار للبيع (مالك)" />
+
+          <button class="submit-button" type="submit" id="sell-submit-btn"><span style="font-family: 'Cairo', sans-serif;">إرسال بيانات العقار</span> <span class="dir-arrow">←</span></button>
+
+          <!-- رسالة النجاح وزرار الواتساب (مخفيين لحد ما يبعت) -->
+          <div id="sell-success-msg" style="display: none; margin-top: 20px; text-align: center;">
+            <p style="color: #25D366; font-weight: bold; margin-bottom: 15px; font-family: 'Cairo', sans-serif; font-size: 18px;">تم استلام تفاصيل عقارك بنجاح! 🎉</p>
+            <p style="color: var(--ink); margin-bottom: 15px; font-family: 'Cairo', sans-serif;">الخطوة الأخيرة: برجاء إرسال صور العقار على الواتساب لمراجعتها ونشرها.</p>
+            <a href="https://wa.me/201014973825?text=أهلاً،%20لقد%20قمت%20بتسجيل%20عقاري%20على%20موقع%20الشمس%20وهذه%20هي%20الصور:" target="_blank" rel="noopener noreferrer" style="display: inline-block; background: #25D366; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-family: 'Cairo', sans-serif; font-weight: bold;">أرسل الصور عبر الواتساب ↗</a>
+          </div>
+
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand" href="index.html"><img class="brand-image" src="assets/elshams-maha-farouk.jpg" alt="ElShams" /><span>ElShams</span></a>
+      <p data-i18n="footer_copy">© 2026 ElShams <SECRET_53b9980f>. Made for better beginnings.</p>
+      <p class="site-credit"><span data-i18n="footer_credit">Website by</span> <strong>Amr Ahmed AbdElrheem</strong> · <a href="https://wa.me/201019332065" target="_blank" rel="noopener noreferrer">WhatsApp</a> · <a href="https://www.linkedin.com/in/amr-ahmed-a18aa73b6" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="#" onclick="openLangModal(); return false;" style="color: #e5bf69;">🌐 Change Language</a></p>
+      <div class="footer-social"><a href="https://www.facebook.com/el.shams.408946" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://wa.me/201014973825" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

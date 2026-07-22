@@ -3,39 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="ElShams — a brighter way to find your next home." />
+    <meta name="description" content="ElShams Real Estate — Mahmoudia's trusted property advisor since 2011. Find your perfect home or sell your property with our expert team." />
+    <meta property="og:title" content="ElShams Real Estate | Mahmoudia" />
+    <meta property="og:description" content="Find your perfect home in Mahmoudia. 14+ years of trusted real estate expertise." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://elshams-real-estate.vercel.app" />
+    <meta property="og:image" content="https://elshams-real-estate.vercel.app/assets/elshams-maha-farouk.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="assets/elshams-maha-farouk.jpg" type="image/jpeg" />
     <title>ElShams | Your next place, brilliantly found</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="mahmoudia.css" />
-    <link rel="stylesheet" href="social-modal.css" />
     <link rel="stylesheet" href="elshams-theme.css" />
   </head>
   <body>
-    <!-- Language Selection Pop-up -->
-    <div class="social-modal" id="lang-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="social-modal" id="lang-modal" aria-hidden="true" role="dialog">
       <div class="modal-backdrop"></div>
-      <section class="modal-card lang-card" style="text-align: center;">
-        <span class="modal-star">✦</span>
-        <h2 style="font-size: 36px; margin-bottom: 12px;">Welcome · <em>مرحباً</em></h2>
-        <p style="margin-bottom: 28px;">Please choose your preferred language to explore ElShams.<br />يرجى اختيار اللغة المفضلة لاستكشاف عقارات الشمس.</p>
-        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-          <button type="button" class="primary-button" onclick="selectLanguage('en')">English <span>→</span></button>
-          <button type="button" class="primary-button" onclick="selectLanguage('ar')" style="font-family: 'Cairo', sans-serif;">العربية <span>←</span></button>
+      <section class="modal-card lang-card">
+        <h2>Welcome · <em>مرحباً</em></h2>
+        <div class="lang-actions">
+          <button type="button" class="primary-button" onclick="selectLanguage('en')">English</button>
+          <button type="button" class="primary-button" onclick="selectLanguage('ar')">العربية</button>
         </div>
       </section>
     </div>
 
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="ElShams home"><img class="brand-image" src="assets/elshams-maha-farouk.jpg" alt="ElShams" /><span>ElShams</span></a>
+    <header class="site-header site-header--dark">
+      <a class="brand" href="index.html"><img class="brand-image" src="assets/elshams-maha-farouk.jpg" alt="ElShams" /><span>ElShams</span></a>
       <nav aria-label="Main navigation">
-        <a href="#why-us" data-i18n="nav_why">Why ElShams</a>
-        <a href="#areas" data-i18n="nav_areas">Areas</a>
-        <a href="#contact" data-i18n="nav_contact">Contact</a>
+        <a href="index.html" data-i18n="nav_home">الرئيسية</a>
+        <a href="properties.html" data-i18n="nav_properties">الوحدات المتاحة</a>
+        <a href="sell.html" data-i18n="nav_sell">اعرض عقارك</a>
+        <a href="guide.html" data-i18n="nav_guide">دليل المحمودية</a>
+        <a href="about.html" data-i18n="nav_about">عن الشركة والتواصل</a>
       </nav>
-      <a class="header-cta" href="#contact"><span data-i18n="nav_cta">Find my home</span> <span class="dir-arrow">↗</span></a>
+      <a class="header-cta" href="about.html#contact"><span data-i18n="nav_cta">ابحث عن منزلي</span> <span class="dir-arrow">↗</span></a>
     </header>
 
     <main id="top">
@@ -44,131 +48,43 @@
         <div class="hero-copy">
           <h1 data-i18n="hero_title">Find a place<br />that feels like <em>sunshine.</em></h1>
           <p class="hero-text" data-i18n="hero_text">Tell us what home means to you. Our Mahmoudia experts will curate options that match your life, your taste, and your budget.</p>
-         <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
-            <a href="#contact" class="primary-button"><span data-i18n="hero_btn">Start your search</span> <span class="dir-arrow">→</span></a>
-            
-            <!-- زرار الملاك بنفس لون الزرار الأساسي -->
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeR9ay2VEBjZd7jk9LQHvOT7mlkNySTtpJTGi6mMLXUM3f1OA/viewform?usp=header" target="_blank" class="primary-button" onclick="return confirm('تنبيه: أنت الآن ستقوم بتقديم بياناتك وصور عقارك لشركة الشمس. سيتم مراجعة الطلب من قبل مستشارينا ورفعه على الموقع في أقرب وقت. هل تريد المتابعة؟');">
-              <span style="font-family: 'Cairo', sans-serif;">اعرض شقتك للبيع</span> <span class="dir-arrow">↗</span>
-            </a>
+          <div class="hero-actions">
+            <a href="properties.html" class="primary-button"><span data-i18n="hero_btn">Start your search</span> <span class="dir-arrow">→</span></a>
+            <a href="sell.html" class="primary-button btn--outline-lime"><span data-i18n="sell_btn">اعرض شقتك للبيع</span> <span class="dir-arrow">↗</span></a>
           </div>
         </div>
-        <div class="hero-visual" aria-label="ElShams real estate showcase">
+        <div class="hero-visual">
           <div class="brand-slider">
-            <figure class="brand-slide is-active"><img src="assets/elshams-maha-farouk.jpg" alt="ElShams Maha Farouk brand identity" /></figure>
-            <figure class="brand-slide"><img src="assets/elshams-property.jpg" alt="ElShams real estate property" /></figure>
+            <figure class="brand-slide is-active"><img src="assets/elshams-maha-farouk.jpg" alt="ElShams" /></figure>
             <div class="slider-label"><span data-i18n="slider_sub">ELSHAMS</span><p data-i18n="slider_title">Mahmoudia<br /><strong>Real Estate</strong></p></div>
-            <div class="slider-dots" aria-label="Image slideshow"><span class="is-active"></span><span></span></div>
           </div>
         </div>
-        <div class="hero-foot"><span data-i18n="foot_scroll">SCROLL TO EXPLORE</span><span class="scroll-line"></span><span data-i18n="foot_est">EST. 2011 · MAHMOUDIA</span></div>
       </section>
 
       <section class="stats" id="why-us">
-        <div><strong>14+</strong><span data-i18n="stat_1">Years guiding<br />buyers home</span></div>
-        <div><strong>2,400</strong><span data-i18n="stat_2">Families matched<br />with a home</span></div>
-        <div><strong>1</strong><span data-i18n="stat_3">City we know<br />by heart</span></div>
-        <p data-i18n="stat_text">We believe the best properties are discovered through listening first.</p>
+        <div><strong>14+</strong><span data-i18n="stat_1">Years guiding buyers</span></div>
+        <div><strong>2,400</strong><span data-i18n="stat_2">Families matched</span></div>
+        <div><strong>1</strong><span data-i18n="stat_3">City we know by heart</span></div>
       </section>
 
-      <!-- Featured Promotional Pictures -->
-      <section class="featured-promos">
-        <div class="promo-card promo-one">
-          <div class="promo-overlay">
-            <h3 dir="rtl" style="font-family: 'Cairo', sans-serif; margin: 0;">وحدات سكنية بأسعار مناسبة</h3>
-          </div>
-        </div>
-        <div class="promo-card promo-two">
-          <div class="promo-overlay">
-            <h3 dir="rtl" style="font-family: 'Cairo', sans-serif; margin: 0;">شقق عصرية تناسب عائلتك</h3>
-          </div>
-        </div>
-      </section>
-      <!-- سكشن المتجر: الوحدات المتاحة -->
-    <!-- Store Section (الوحدات المتاحة) -->
-      <section class="property-store" id="store">
+      <!-- Featured Properties (Shows only 3 latest) -->
+      <section class="property-store" style="background: var(--sand);">
         <div class="section-heading">
-          <p class="eyebrow" style="margin-bottom: 20px;"><span></span> حصرياً لدينا</p>
-          <h2 style="font-family: 'Cairo', sans-serif;" dir="rtl">تصفح أحدث <em>الشقق.</em></h2>
-        </div>
-        
-        <!-- الكروت هتترسم هنا أوتوماتيك من جوجل شيت -->
-        <div class="store-grid" id="dynamic-store">
-        </div>
-
-      </section>
-
-      <section class="areas" id="areas">
-        <div class="section-heading"><p class="eyebrow"><span></span> <span data-i18n="areas_eyebrow">Local knowledge, lasting value</span></p><h2 data-i18n="areas_title">Discover life in<br /><em>Mahmoudia.</em></h2></div>
-        <div class="area-grid">
-          <article class="area-card card-mahmoudia"><span data-i18n="area_sub">El Beheira, Egypt</span><h3 data-i18n="area_title">Mahmoudia</h3><p data-i18n="area_text">Homes selected for the way you want to live.</p><a href="#contact"><span data-i18n="area_btn">Explore homes</span> <b class="dir-arrow">→</b></a></article>
-        </div>
-      </section>
-
-      <section class="contact" id="contact">
-        <div class="contact-intro">
-          <h2 data-i18n="contact_title">Tell us a little<br />about your <em>dream.</em></h2>
-          <p data-i18n="contact_text">One of our property advisors will be in touch within one business day with opportunities tailored to you.</p>
-          <div class="contact-note">
-            <span>✦</span>
-            <p data-i18n="contact_note">Your details are private and used only to help with your property search.</p>
+          <div>
+            <p class="eyebrow" style="margin-bottom: 20px;"><span></span> أحدث العروض</p>
+            <h2 style="font-family: 'Cairo', sans-serif;" dir="rtl">وحدات سكنية <em>مختارة.</em></h2>
           </div>
+          <a href="properties.html" class="primary-button btn--outline-ink"><span style="font-family: 'Cairo', sans-serif;">عرض كل العقارات</span></a>
         </div>
-        <form id="lead-form" class="lead-form" novalidate>
-          <label><span data-i18n="label_name">Full name</span><input id="name" name="name" type="text" placeholder="How should we call you?" autocomplete="name" required /></label>
-          <label><span data-i18n="label_phone">Mobile phone</span><input id="phone" name="phone" type="tel" placeholder="e.g. +20 10 1234 5678" autocomplete="tel" required /></label>
-          
-          <label><span data-i18n="label_prop_type">Property type</span>
-            <select id="prop_type" name="prop_type" required>
-              <option value="" selected disabled data-i18n="opt_prop_default">Select property type</option>
-              <option value="Apartment" data-i18n="opt_prop_apt">Apartment</option>
-              <option value="House" data-i18n="opt_prop_house">House</option>
-              <option value="Shop" data-i18n="opt_prop_shop">Shop</option>
-            </select>
-          </label>
-
-          <label><span data-i18n="label_trans_type">Transaction type</span>
-            <select id="trans_type" name="trans_type" required>
-              <option value="" selected disabled data-i18n="opt_trans_default">Select Rent or Sale</option>
-              <option value="Sale" data-i18n="opt_trans_sale">Buy / Sale</option>
-              <option value="Rent" data-i18n="opt_trans_rent">Rent</option>
-            </select>
-          </label>
-
-          <!-- Manual Budget Input Field -->
-          <label><span data-i18n="label_budget">Your budget</span>
-            <input id="budget" name="budget" type="text" placeholder="e.g. 1,500,000 EGP" required />
-          </label>
-<!-- خانة العقار المطلوب (بتتملي أوتوماتيك) -->
-          <label><span data-i18n="label_requested_prop">الوحدة المطلوبة</span>
-            <input id="requested_property" name="requested_property" type="text" value="استفسار عام" readonly style="background-color: rgba(22, 59, 58, 0.05); cursor: not-allowed; color: var(--coral); font-weight: 700;" />
-          </label>
-          <button class="submit-button" type="submit"><span data-i18n="form_btn">Connect me with an advisor</span> <span class="dir-arrow">→</span></button>
-          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-        </form>
+        <div class="store-grid" id="dynamic-store" data-limit="3"></div>
       </section>
     </main>
-    <footer>
-      <a class="brand" href="#top"><img class="brand-image" src="assets/elshams-maha-farouk.jpg" alt="ElShams" /><span>ElShams</span></a>
-      <p data-i18n="footer_copy">© 2026 ElShams Real Estate. Made for better beginnings.</p>
-      <p class="site-credit"><span data-i18n="footer_credit">Website by</span> <strong>Amr Ahmed AbdElrheem</strong> · <a href="https://wa.me/201019332065" target="_blank" rel="noopener noreferrer">WhatsApp</a> · <a href="https://www.linkedin.com/in/amr-ahmed-a18aa73b6" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="#" onclick="openLangModal(); return false;" style="color: #e5bf69;">🌐 Change Language</a></p>
-      <div><a href="https://www.facebook.com/el.shams.408946" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://wa.me/201014973825" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
-    </footer>
 
-    <div class="social-modal" id="social-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="social-title">
-      <div class="modal-backdrop" data-close-modal></div>
-      <section class="modal-card">
-        <button class="modal-close" type="button" aria-label="Close" data-close-modal>×</button>
-        <span class="modal-star">✦</span>
-        <p class="eyebrow"><span></span> <span data-i18n="modal_eyebrow">Stay in touch</span></p>
-        <h2 id="social-title" data-i18n="modal_title">Your request is<br />on its <em>way.</em></h2>
-        <p data-i18n="modal_text">While an ElShams advisor prepares your options, follow us for the latest Mahmoudia homes.</p>
-        <div class="social-links">
-          <a href="https://www.facebook.com/el.shams.408946" target="_blank" rel="noopener noreferrer" aria-label="ElShams Facebook">Facebook <b class="dir-arrow">↗</b></a>
-          <a href="https://wa.me/201014973825" target="_blank" rel="noopener noreferrer" aria-label="Contact ElShams on WhatsApp">WhatsApp <b class="dir-arrow">↗</b></a>
-        </div>
-      </section>
-    </div>
+    <footer>
+      <a class="brand" href="index.html"><img class="brand-image" src="assets/elshams-maha-farouk.jpg" alt="ElShams" /><span>ElShams</span></a>
+      <p data-i18n="footer_copy">© 2026 ElShams Real Estate.</p>
+      <p class="site-credit"><span data-i18n="footer_credit">Website by</span> <strong>Amr Ahmed AbdElrheem</strong> · <a href="https://wa.me/201019332065" target="_blank" rel="noopener noreferrer">WhatsApp</a> · <a href="https://www.linkedin.com/in/amr-ahmed-a18aa73b6" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="#" onclick="openLangModal(); return false;" style="color: #e5bf69;">🌐 Change Language</a></p>
+    </footer>
     <script src="script.js"></script>
   </body>
 </html>

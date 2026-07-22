@@ -1,14 +1,29 @@
-// Translation Dictionary
+const SITE_CONFIG = {
+  whatsappBuyer: '201014973825',
+  whatsappSeller: '201019332065',
+  whatsappLeadPost: '201014973825',
+  facebookUrl: 'https://www.facebook.com/el.shams.408946',
+  sellSheetUrl: 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE',
+  leadApiUrl: '/api/leads',
+};
+
+const WA_LINKS = {
+  buyer: `https://wa.me/${SITE_CONFIG.whatsappBuyer}`,
+  seller: `https://wa.me/${SITE_CONFIG.whatsappSeller}`,
+  leadPost: `https://wa.me/${SITE_CONFIG.whatsappLeadPost}`,
+};
+
 const translations = {
-  en: {
-    nav_why: "Why ElShams",
-    nav_areas: "Areas",
-    nav_contact: "Contact",
+    nav_home: "Home",
+    nav_properties: "Properties",
+    nav_sell: "List Your Property",
+    nav_guide: "Mahmoudia Guide",
+    nav_about: "About & Contact",
     nav_cta: "Find my home",
-    hero_eyebrow: "Mahmoudia real estate, made personal",
     hero_title: "Find a place<br />that feels like <em>sunshine.</em>",
     hero_text: "Tell us what home means to you. Our Mahmoudia experts will curate options that match your life, your taste, and your budget.",
     hero_btn: "Start your search",
+    sell_btn: "List your property",
     slider_sub: "ELSHAMS",
     slider_title: "Mahmoudia<br /><strong>Real Estate</strong>",
     foot_scroll: "SCROLL TO EXPLORE",
@@ -19,44 +34,20 @@ const translations = {
     stat_text: "We believe the best properties are discovered through listening first.",
     promo_1_sub: "Find the perfect home within your budget.",
     promo_2_sub: "Modern spaces designed for family living.",
-    areas_eyebrow: "Local knowledge, lasting value",
-    areas_title: "Discover life in<br /><em>Mahmoudia.</em>",
-    area_sub: "El Beheira, Egypt",
-    area_title: "Mahmoudia",
-    area_text: "Homes selected for the way you want to live.",
-    area_btn: "Explore homes",
-    contact_eyebrow: "Your search starts here",
-    contact_title: "Tell us a little<br />about your <em>dream.</em>",
-    contact_text: "One of our property advisors will be in touch within one business day with opportunities tailored to you.",
-    contact_note: "Your details are private and used only to help with your property search.",
-    label_name: "Full name",
-    label_phone: "Mobile phone",
-    label_prop_type: "Property type",
-    opt_prop_default: "Select property type",
-    opt_prop_apt: "Apartment",
-    opt_prop_house: "House",
-    opt_prop_shop: "Shop",
-    label_trans_type: "Transaction type",
-    opt_trans_default: "Select Rent or Sale",
-    opt_trans_sale: "Buy / Sale",
-    opt_trans_rent: "Rent",
-    label_budget: "Your budget",
-    form_btn: "Connect me with an advisor",
     footer_copy: "© 2026 ElShams Real Estate. Made for better beginnings.",
-    footer_credit: "Website by",
-    modal_eyebrow: "Stay in touch",
-    modal_title: "Your request is<br />on its <em>way.</em>",
-    modal_text: "While an ElShams advisor prepares your options, follow us for the latest Mahmoudia homes."
+    footer_credit: "Website by"
   },
   ar: {
-    nav_why: "لماذا الشمس",
-    nav_areas: "المناطق",
-    nav_contact: "تواصل معنا",
+    nav_home: "الرئيسية",
+    nav_properties: "الوحدات المتاحة",
+    nav_sell: "اعرض عقارك",
+    nav_guide: "دليل المحمودية",
+    nav_about: "عن الشركة والتواصل",
     nav_cta: "ابحث عن منزلي",
-    hero_eyebrow: "عقارات المحمودية، بلمسة شخصية",
     hero_title: "اعثر على منزل<br />يشعرك <em>بالدفء والإشراق.</em>",
     hero_text: "أخبرنا ماذا يعني المنزل بالنسبة لك. سيقوم خبراء المحمودية لدينا باختيار الخيارات التي تناسب حياتك وذوقك وميزانيتك.",
     hero_btn: "ابدأ بحثك",
+    sell_btn: "اعرض شقتك للبيع",
     slider_sub: "الشمس",
     slider_title: "عقارات<br /><strong>المحمودية</strong>",
     foot_scroll: "مرر للاستكشاف",
@@ -67,50 +58,11 @@ const translations = {
     stat_text: "نحن نؤمن بأن أفضل العقارات يتم اكتشافها من خلال الاستماع أولاً.",
     promo_1_sub: "اكتشف المنزل المثالي ضمن ميزانيتك.",
     promo_2_sub: "مساحات حديثة مصممة للحياة العائلية.",
-    areas_eyebrow: "خبرة محلية، وقيمة مستدامة",
-    areas_title: "اكتشف الحياة في<br /><em>المحمودية.</em>",
-    area_sub: "البحيرة، مصر",
-    area_title: "المحمودية",
-    area_text: "منازل مختارة بالطريقة التي ترغب في العيش بها.",
-    area_btn: "استكشف المنازل",
-    contact_eyebrow: "بحثك يبدأ من هنا",
-    contact_title: "أخبرنا قليلاً<br />عن <em>حلمك.</em>",
-    contact_text: "سيتواصل معك أحد مستشارينا العقاريين خلال يوم عمل واحد بفرص مصممة خصيصاً لك.",
-    contact_note: "بياناتك سرية وتستخدم فقط لمساعدتك في البحث عن عقار.",
-    label_name: "الاسم الكامل",
-    label_phone: "رقم الهاتف",
-    label_prop_type: "نوع العقار",
-    opt_prop_default: "اختر نوع العقار",
-    opt_prop_apt: "شقة سكنية",
-    opt_prop_house: "منزل / فيلا",
-    opt_prop_shop: "محل تجاري",
-    label_trans_type: "نوع التعامل",
-    opt_trans_default: "اختر إيجار أو شراء",
-    opt_trans_sale: "شراء / تمليك",
-    opt_trans_rent: "إيجار",
-    label_budget: "الميزانية المتاحة",
-    form_btn: "وصلني بمستشار عقاري",
     footer_copy: "© 2026 عقارات الشمس. صنع لبدايات أفضل.",
-    footer_credit: "تصميم الموقع بواسطة",
-    modal_eyebrow: "ابق على تواصل",
-    modal_title: "طلبك في<br />طريقه <em>إلينا.</em>",
-    modal_text: "بينما يقوم مستشار الشمس بتجهيز خياراتك، تابعنا لمعرفة أحدث منازل المحمودية."
+    footer_credit: "تصميم الموقع بواسطة"
   }
 };
-// Function to link Store cards to the Contact Form
-function inquireAbout(propertyName) {
-  const propInput = document.getElementById('requested_property');
-  if (propInput) {
-    propInput.value = propertyName; // Writes the apartment name into the form
-  }
-  
-  // Smooth scroll down to the form
-  const contactSection = document.getElementById('contact');
-  if (contactSection) {
-    contactSection.scrollIntoView({ behavior: 'smooth' });
-  }
-}
-// Language Handling Logic
+
 const langModal = document.querySelector('#lang-modal');
 
 function openLangModal() {
@@ -135,7 +87,6 @@ function applyLanguage(lang) {
   document.documentElement.setAttribute('lang', lang);
   document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
   
-  // Translate all elements with data-i18n attribute
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (translations[lang] && translations[lang][key]) {
@@ -143,58 +94,32 @@ function applyLanguage(lang) {
     }
   });
 
-  // Update input placeholders dynamically
-  const nameInput = document.querySelector('#name');
-  const phoneInput = document.querySelector('#phone');
-  const budgetInput = document.querySelector('#budget');
-  
-  if (nameInput) nameInput.placeholder = lang === 'ar' ? "كيف نحب أن نناديك؟" : "How should we call you?";
-  if (phoneInput) phoneInput.placeholder = lang === 'ar' ? "مثال: 5678 1234 10 20+" : "e.g. +20 10 1234 5678";
-  if (budgetInput) budgetInput.placeholder = lang === 'ar' ? "مثال: 1,500,000 جنيه" : "e.g. 1,500,000 EGP";
+  const inputs = {
+    name: lang === 'ar' ? "كيف نحب أن نناديك؟" : "How should we call you?",
+    phone: lang === 'ar' ? "مثال: 5678 1234 10 20+" : "e.g. +20 10 1234 5678",
+    budget: lang === 'ar' ? "مثال: 1,500,000 جنيه" : "e.g. 1,500,000 EGP"
+  };
+
+  Object.keys(inputs).forEach(id => {
+    const el = document.querySelector(`#${id}`);
+    if (el) el.placeholder = inputs[id];
+  });
 }
 
-// Check if user has selected a language previously
 document.addEventListener('DOMContentLoaded', () => {
   const savedLang = localStorage.getItem('elshams_lang');
   if (savedLang) {
     applyLanguage(savedLang);
   } else {
-    // Show pop-up on very first visit
     setTimeout(openLangModal, 500);
   }
-});
-
-// Existing Modal & Form Logic
-const form = document.querySelector('#lead-form');
-const status = document.querySelector('#form-status');
-const modal = document.querySelector('#social-modal');
-const modalCloseButtons = document.querySelectorAll('[data-close-modal]');
-
-function openSocialModal() {
-  if (!modal) return;
-  modal.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('modal-open');
-  modal.querySelector('.modal-close').focus();
-}
-
-function closeSocialModal() {
-  if (!modal) return;
-  modal.setAttribute('aria-hidden', 'true');
-  document.body.classList.remove('modal-open');
-}
-
-modalCloseButtons.forEach((button) => button.addEventListener('click', closeSocialModal));
-document.addEventListener('keydown', (event) => { 
-  if (event.key === 'Escape') {
-    if (modal && modal.getAttribute('aria-hidden') === 'false') closeSocialModal();
-    if (langModal && langModal.getAttribute('aria-hidden') === 'false') closeLangModal();
-  } 
 });
 
 const brandSlides = document.querySelectorAll('.brand-slide');
 const sliderDots = document.querySelectorAll('.slider-dots span');
 let activeSlide = 0;
-if (brandSlides.length > 1) {
+const hasSliderDots = sliderDots.length > 0;
+if (brandSlides.length > 1 && hasSliderDots) {
   window.setInterval(() => {
     brandSlides[activeSlide].classList.remove('is-active');
     sliderDots[activeSlide].classList.remove('is-active');
@@ -204,96 +129,176 @@ if (brandSlides.length > 1) {
   }, 4500);
 }
 
-if (form) {
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    
-    // Validate form fields BEFORE sending anything
-    if (!form.checkValidity()) { 
-      form.reportValidity(); 
-      return; 
-    }
-    
-    const button = form.querySelector('button');
-    button.disabled = true;
-    const currentLang = document.documentElement.getAttribute('lang') || 'en';
-    status.textContent = currentLang === 'ar' ? 'جاري إرسال طلبك…' : 'Sending your request…';
-    
-    // Gather form data AFTER checking validity
-    const payload = Object.fromEntries(new FormData(form));
-    
-    if (window.location.protocol === 'file:') {
-      form.reset();
-      status.textContent = currentLang === 'ar' ? 'وضع المعاينة — تم إرسال طلبك افتراضياً إلى الشمس.' : 'Preview mode — your request would now be sent to ElShams.';
-      openSocialModal();
-      button.disabled = false;
-      return;
-    }
-    
-    try {
-      const scriptURL = 'https://script.google.com/macros/s/AKfycby3caTgOrfODKAJnGEze34S5cELRXJvReXRfsXRk4gme2GyGej_4m5y3z-775XSAwk/exec';
-      
-      const response = await fetch(scriptURL, {
-        method: 'POST',
-        mode: 'no-cors', 
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload)
-      });
-      
-      // If successful, reset the form and show the thank-you modal
-      form.reset();
-      status.textContent = currentLang === 'ar' ? 'شكراً لك — سيتواصل معك أحد مستشاري الشمس قريباً.' : 'Thank you — an ElShams advisor will contact you shortly.';
-      openSocialModal();
-    } catch (error) {
-      status.textContent = currentLang === 'ar' ? 'تعذر إرسال طلبك. يرجى المحاولة مرة أخرى قريباً.' : 'We could not send your request. Please try again shortly.';
-    } finally {
-      button.disabled = false;
-    }
-  });
-// Function to dynamically load properties from Google Sheets
+// Dynamic Store Loader
 async function loadProperties() {
   const storeGrid = document.getElementById('dynamic-store');
   if(!storeGrid) return;
 
-  storeGrid.innerHTML = '<p style="text-align:center; width:100%; font-family: Cairo; color: var(--ink);">جاري تحميل أحدث الوحدات...</p>';
+  const isHomePage = storeGrid.getAttribute('data-limit') === '3';
+  storeGrid.innerHTML = '<p style="text-align:center; width:100%; font-family: Cairo; color: var(--ink);">جاري تحميل الوحدات السكنية...</p>';
 
-  try {
-    // رابط السكريبت بتاعك اللي متوصل بجوجل شيت
-    const scriptURL = 'https://script.google.com/macros/s/AKfycby3caTgOrfODKAJnGEze34S5cELRXJvReXRfsXRk4gme2GyGej_4m5y3z-775XSAwk/exec';
-    
-    const response = await fetch(scriptURL);
-    const properties = await response.json();
+   try {
+     const scriptURL = 'https://script.google.com/macros/s/AKfycby3caTgOrfODKAJnGEze34S5cELRXJvReXRfsXRk4gme2GyGej_4m5y3z-775XSAwk/exec';
+     const response = await fetch(scriptURL);
+     const raw = await response.json();
+     const properties = Array.isArray(raw) ? raw : [];
 
-    storeGrid.innerHTML = ''; 
+     storeGrid.innerHTML = '';
 
-    if(properties.length === 0) {
-       storeGrid.innerHTML = '<p style="text-align:center; width:100%; font-family: Cairo; color: var(--muted);">لا توجد وحدات متاحة حالياً، تابعنا قريباً.</p>';
-       return;
-    }
+     if(properties.length === 0) {
+        storeGrid.innerHTML = '<p style="text-align:center; width:100%; font-family: Cairo; color: var(--muted);">لا توجد وحدات متاحة حالياً، تابعنا قريباً.</p>';
+        return;
+     }
 
-    properties.forEach((prop, index) => {
-      const isRent = prop.status.includes('إيجار') ? 'rent' : '';
-      const cardHTML = `
-        <article class="store-card">
-          <div class="card-img-wrapper">
-            <img src="${prop.image}" alt="${prop.title}" onerror="this.src='assets/elshams-property.jpg'" />
-            <span class="status-badge ${isRent}">${prop.status}</span>
-          </div>
-          <div class="store-card-content">
-            <span class="price" dir="ltr">${prop.price}</span>
-            <h3 dir="rtl">${prop.title}</h3>
-            <p dir="rtl">${prop.desc}</p>
-            <button class="store-btn" onclick="inquireAbout('${prop.title} - كود 00${index+1}')" dir="rtl">أطلب تفاصيل الشقة <span>←</span></button>
-          </div>
-        </article>
-      `;
-      storeGrid.innerHTML += cardHTML;
-    });
+     if (isHomePage) properties = properties.slice(0, 3);
 
-  } catch(error) {
-    storeGrid.innerHTML = '<p style="text-align:center; width:100%; color:red; font-family: Cairo;">حدث خطأ أثناء تحميل الوحدات. يرجى تحديث الصفحة.</p>';
+     properties.forEach((prop) => {
+       const status = prop.status || '';
+       const isRent = status.includes('إيجار') ? 'rent' : '';
+       const image = prop.image || 'assets/elshams-property.jpg';
+       const title = prop.title || '';
+       const price = prop.price || '';
+       const desc = prop.desc || '';
+       const cardHTML = `
+         <article class="store-card">
+           <div class="card-img-wrapper">
+             <img src="${image}" alt="${title}" onerror="this.src='assets/elshams-property.jpg'" />
+             <span class="status-badge ${isRent}">${status}</span>
+           </div>
+           <div class="store-card-content">
+             <span class="price" dir="ltr">${price}</span>
+             <h3 dir="rtl">${title}</h3>
+             <p dir="rtl">${desc}</p>
+             <a href="about.html#contact?prop=${encodeURIComponent(title)}" class="store-btn" dir="rtl" style="text-decoration:none;">أطلب تفاصيل الشقة <span>←</span></a>
+           </div>
+         </article>
+       `;
+       storeGrid.innerHTML += cardHTML;
+     });
+
+   } catch(error) {
+     storeGrid.innerHTML = '<p style="text-align:center; width:100%; color:red; font-family: Cairo;">حدث خطأ أثناء تحميل الوحدات. يرجى تحديث الصفحة.</p>';
+   }
+ }
+
+window.addEventListener('DOMContentLoaded', loadProperties);
+function validateField(input, minLength = 2) {
+  const val = input.value.trim();
+  if (!val || val.length < minLength) {
+    input.style.borderColor = 'var(--coral)';
+    return false;
   }
+  input.style.borderColor = '';
+  return true;
 }
 
-// تشغيل الدالة أوتوماتيك أول ما الموقع يفتح
-window.addEventListener('DOMContentLoaded', loadProperties);}
+function showSubmitError(btn, msg) {
+  btn.disabled = false;
+  btn.innerHTML = `<span style="font-family: 'Cairo', sans-serif;">${msg}</span>`;
+}
+
+// --- وظيفة فورم عرض العقار (للبائعين) ---
+const sellForm = document.getElementById('sell-form');
+if (sellForm) {
+  const submitBtn = document.getElementById('sell-submit-btn');
+  const successMsg = document.getElementById('sell-success-msg');
+  const nameInput = document.getElementById('sell_name');
+  const phoneInput = document.getElementById('sell_phone');
+  const detailsInput = document.getElementById('sell_details');
+  const priceInput = document.getElementById('sell_price');
+
+  [nameInput, phoneInput, detailsInput, priceInput].forEach(el => {
+    if (!el) return;
+    el.addEventListener('blur', () => validateField(el, el.id === 'sell_phone' ? 7 : 2));
+    el.addEventListener('input', () => { el.style.borderColor = ''; });
+  });
+
+  sellForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const fields = [nameInput, phoneInput, detailsInput, priceInput];
+    const valid = fields.every(el => el && validateField(el, el.id === 'sell_phone' ? 7 : 2));
+    if (!valid) return;
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span style="font-family: \'Cairo\', sans-serif;">جاري الإرسال...</span>';
+
+    if (SITE_CONFIG.sellSheetUrl === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+      showSubmitError(submitBtn, 'يرجى تكوين رابط Google Sheet أولاً');
+      return;
+    }
+
+    const formData = new FormData(sellForm);
+
+    try {
+      const res = await fetch(SITE_CONFIG.sellSheetUrl, { method: 'POST', body: formData });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      submitBtn.style.display = 'none';
+      if (successMsg) successMsg.style.display = 'block';
+    } catch (error) {
+      showSubmitError(submitBtn, 'حدث خطأ، حاول مرة أخرى');
+    }
+  });
+}
+
+// --- وظيفة فورم التواصل الرئيسي ---
+const leadForm = document.getElementById('lead-form');
+if (leadForm) {
+  const submitBtn = leadForm.querySelector('.submit-button');
+  const formStatus = document.getElementById('form-status');
+  const nameInput = document.getElementById('name');
+  const phoneInput = document.getElementById('phone');
+  const budgetInput = document.getElementById('budget');
+
+  [nameInput, phoneInput, budgetInput].forEach(el => {
+    if (!el) return;
+    el.addEventListener('blur', () => validateField(el, el.id === 'phone' ? 7 : 2));
+    el.addEventListener('input', () => { el.style.borderColor = ''; });
+  });
+
+  leadForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const fields = [nameInput, phoneInput, budgetInput];
+    const valid = fields.every(el => el && validateField(el, el.id === 'phone' ? 7 : 2));
+    if (!valid) {
+      if (formStatus) formStatus.textContent = 'يرجى ملء جميع الحقول المطلوبة بشكل صحيح';
+      return;
+    }
+
+    const propType = document.getElementById('prop_type')?.value || '';
+    const transType = document.getElementById('trans_type')?.value || '';
+    const requestedProperty = document.getElementById('requested_property')?.value || '';
+
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'جاري الإرسال... '; }
+    if (formStatus) formStatus.textContent = '';
+
+    try {
+      const res = await fetch(SITE_CONFIG.leadApiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: nameInput.value.trim(),
+          phone: phoneInput.value.trim(),
+          budget: budgetInput.value.trim(),
+          prop_type: propType,
+          trans_type: transType,
+          requested_property: requestedProperty,
+          lead_source: 'about_form',
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'فشل الإرسال');
+
+      if (formStatus) formStatus.textContent = 'تم إرسال طلبك بنجاح، سنتواصل معك قريباً';
+      leadForm.reset();
+      const propInput = document.getElementById('requested_property');
+      if (propInput) propInput.value = 'استفسار عام';
+      document.getElementById('social-modal')?.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+    } catch (error) {
+      if (formStatus) formStatus.textContent = 'حدث خطأ، يرجى المحاولة مرة أخرى';
+    } finally {
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Connect me with an advisor'; }
+    }
+  });
+}

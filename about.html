@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="About ElShams Real Estate. 14+ years of trusted Mahmoudia property expertise. Contact our advisors for your property search." />
+    <meta property="og:title" content="About ElShams Real Estate" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://elshams-real-estate.vercel.app/about.html" />
+    <meta property="og:image" content="https://elshams-real-estate.vercel.app/assets/elshams-maha-farouk.jpg" />
+    <link rel="icon" href="assets/elshams-maha-farouk.jpg" type="image/jpeg" />
+    <title>About & Contact | ElShams Real Estate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="elshams-theme.css" />
+  </head>
+  <body>
+    <header class="site-header site-header--dark">
+      <a class="brand" href="index.html"><img class="brand-image" src="assets/elshams-maha-farouk.jpg" alt="ElShams" /><span>ElShams</span></a>
+      <nav aria-label="Main navigation">
+        <a href="index.html" data-i18n="nav_home">الرئيسية</a>
+        <a href="properties.html" data-i18n="nav_properties">الوحدات المتاحة</a>
+        <a href="sell.html" data-i18n="nav_sell">اعرض عقارك</a>
+        <a href="guide.html" data-i18n="nav_guide">دليل المحمودية</a>
+        <a href="about.html" data-i18n="nav_about" class="nav-link--active">عن الشركة والتواصل</a>
+      </nav>
+      <a class="header-cta" href="#contact"><span data-i18n="nav_cta">ابحث عن منزلي</span> <span class="dir-arrow">↗</span></a>
+    </header>
+
+    <main>
+      <!-- جزء عن الشركة -->
+      <section class="about-hero" dir="rtl">
+        <div class="about-hero-text">
+          <h2>عن مكتب <em style="color: var(--coral);">الشمس.</em></h2>
+          <p>تأسست عقارات الشمس عام 2011 في قلب المحمودية. على مدار أكثر من 14 عاماً، تخصصنا بشكل حصري في العقارات السكنية، لأننا نؤمن أن اختيار المنزل هو أحد أهم القرارات في حياة أي عائلة.</p>
+          <p>هدفنا الأول ليس مجرد إتمام عملية بيع، بل إيجاد المكان الذي ستصنع فيه عائلتك أجمل ذكرياتها. نلتزم بالشفافية المطلقة، وتقديم الاستشارات السكنية الصادقة لكل عملائنا.</p>
+        </div>
+        <div class="about-hero-img">
+          <img src="assets/elshams-maha-farouk.jpg" alt="عقارات الشمس" />
+        </div>
+      </section>
+
+      <!-- جزء الفورم اللي نقلناه -->
+      <section class="contact" id="contact">
+        <div class="contact-intro">
+          <h2 data-i18n="contact_title">Tell us a little<br />about your <em>dream.</em></h2>
+          <p data-i18n="contact_text">One of our property advisors will be in touch within one business day with opportunities tailored to you.</p>
+          <div class="contact-note">
+            <span>✦</span>
+            <p data-i18n="contact_note">Your details are private and used only to help with your property search.</p>
+          </div>
+
+          <div class="contact-whatsapp-wrap">
+            <p style="font-family: 'Cairo', sans-serif; font-weight: bold; color: var(--ink);">تواصل معنا مباشرة:</p>
+            <a href="https://wa.me/201014973825" target="_blank" rel="noopener noreferrer" class="primary-button contact-whatsapp">
+              <span>واتساب (+201014973825)</span> <span class="dir-arrow">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <form id="lead-form" class="lead-form" novalidate>
+          <label><span data-i18n="label_name">Full name</span><input id="name" name="name" type="text" placeholder="How should we call you?" autocomplete="name" required /></label>
+          <label><span data-i18n="label_phone">Mobile phone</span><input id="phone" name="phone" type="tel" placeholder="e.g. +20 10 1234 5678" autocomplete="tel" required /></label>
+
+          <label><span data-i18n="label_prop_type">Property type</span>
+            <select id="prop_type" name="prop_type" required>
+              <option value="" selected disabled data-i18n="opt_prop_default">Select property type</option>
+              <option value="Apartment" data-i18n="opt_prop_apt">Apartment</option>
+              <option value="House" data-i18n="opt_prop_house">House</option>
+            </select>
+          </label>
+
+          <label><span data-i18n="label_trans_type">Transaction type</span>
+            <select id="trans_type" name="trans_type" required>
+              <option value="" selected disabled data-i18n="opt_trans_default">Select Rent or Sale</option>
+              <option value="Sale" data-i18n="opt_trans_sale">Buy / Sale</option>
+              <option value="Rent" data-i18n="opt_trans_rent">Rent</option>
+            </select>
+          </label>
+
+          <label><span data-i18n="label_budget">Your budget</span>
+            <input id="budget" name="budget" type="text" placeholder="e.g. 1,500,000 EGP" required />
+          </label>
+
+          <!-- خانة الوحدة المطلوبة -->
+          <label><span style="font-family: 'Cairo', sans-serif;">الوحدة المطلوبة (إن وجدت)</span>
+            <input id="requested_property" name="requested_property" type="text" value="استفسار عام" readonly class="requested-property-input" />
+          </label>
+
+          <button class="submit-button" type="submit"><span data-i18n="form_btn">Connect me with an advisor</span> <span class="dir-arrow">→</span></button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+<footer>
+      <a class="brand" href="index.html"><img class="brand-image" src="assets/elshams-maha-farouk.jpg" alt="ElShams" /><span>ElShams</span></a>
+      <p data-i18n="footer_copy">© 2026 ElShams Real Estate. Made for better beginnings.</p>
+      <p class="site-credit"><span data-i18n="footer_credit">Website by</span> <strong>Amr Ahmed AbdElrheem</strong> · <a href="https://wa.me/201019332065" target="_blank" rel="noopener noreferrer">WhatsApp</a> · <a href="https://www.linkedin.com/in/amr-ahmed-a18aa73b6" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="#" onclick="openLangModal(); return false;" style="color: #e5bf69;">🌐 Change Language</a></p>
+      <div class="footer-social"><a href="https://www.facebook.com/el.shams.408946" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://wa.me/201014973825" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
+    </footer>
+
+    <!-- Social Modal (After Form Submission) -->
+    <div class="social-modal" id="social-modal" aria-hidden="true" role="dialog">
+      <div class="modal-backdrop" data-close-modal></div>
+      <section class="modal-card">
+        <button class="modal-close" type="button" aria-label="Close" data-close-modal>×</button>
+        <span class="modal-star">✦</span>
+        <h2 id="social-title" data-i18n="modal_title">Your request is<br />on its <em>way.</em></h2>
+        <p data-i18n="modal_text">While an ElShams advisor prepares your options, follow us for the latest Mahmoudia homes.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/el.shams.408946" target="_blank" rel="noopener noreferrer">Facebook <b class="dir-arrow">↗</b></a>
+          <a href="https://wa.me/201014973825" target="_blank" rel="noopener noreferrer">WhatsApp <b class="dir-arrow">↗</b></a>
+        </div>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- سكريبت صغير عشان يسحب اسم الشقة من المتجر ويحطها في الفورم أوتوماتيك -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const hash = window.location.hash;
+        if(hash.includes("?prop=")) {
+          const propName = decodeURIComponent(hash.split("?prop=")[1]);
+          const propInput = document.getElementById("requested_property");
+          if(propInput) propInput.value = propName;
+        }
+      });
+    </script>
+  </body>
+</html>

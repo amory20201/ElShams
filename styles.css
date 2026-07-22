@@ -177,6 +177,128 @@ footer a:hover {
   min-height: 440px;
 }
 
+.site-header--dark {
+  position: sticky;
+  background: var(--ink);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.btn--outline-ink {
+  background: transparent;
+  border: 2px solid var(--ink);
+  color: var(--ink);
+}
+
+.btn--outline-lime {
+  background: transparent;
+  border: 2px solid var(--lime);
+  color: var(--lime);
+}
+
+.nav-link--active {
+  color: var(--lime);
+}
+
+.contact-whatsapp {
+  background: #25D366;
+  color: white;
+  margin-top: 10px;
+}
+
+.contact-whatsapp span {
+  color: white;
+}
+
+.form-error-field {
+  border-color: var(--coral) !important;
+}
+
+.about-hero {
+  padding: 80px 6.4vw;
+  background: var(--sand);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: center;
+  direction: rtl;
+}
+
+.about-hero-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.about-hero-text h2 {
+  font: 700 clamp(36px, 4vw, 42px)/1.3 "Playfair Display", serif;
+  color: var(--ink);
+  margin: 0 0 20px;
+}
+
+.about-hero-text p {
+  font: 400 16px/1.8 'Cairo', sans-serif;
+  color: var(--muted);
+  margin: 0 0 15px;
+}
+
+.about-hero-img {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.about-hero-img img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border: 4px solid var(--lime);
+  display: block;
+}
+
+.contact-whatsapp-wrap {
+  margin-top: 40px;
+}
+
+.lang-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.requested-property-input {
+  background-color: rgba(22, 59, 58, 0.05);
+  cursor: not-allowed;
+  color: var(--coral);
+  font-weight: 700;
+  font-family: 'Cairo', sans-serif;
+  border-bottom: 1px solid rgba(22,59,58,.45);
+  padding: 12px 0;
+}
+
+.footer-social {
+  display: flex;
+  gap: 20px;
+}
+
+.sell-form-textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--muted);
+  border-radius: 6px;
+  font-family: 'Cairo', sans-serif;
+  resize: vertical;
+  background: transparent;
+  color: var(--ink);
+}
+
 .sun-disc {
   width: min(35vw, 470px);
   aspect-ratio: 1;
@@ -758,4 +880,32 @@ footer div {
 
 [dir="rtl"] .store-btn {
   flex-direction: row-reverse;
+}
+
+.guide-grid {
+  padding: 80px 6.4vw;
+  background: var(--sand);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.guide-card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.guide-card h3 {
+  color: var(--coral);
+  font: 700 24px/1.3 'Cairo', sans-serif;
+  margin: 0 0 15px;
+}
+
+.guide-card p {
+  color: var(--muted);
+  line-height: 1.8;
+  font-family: 'Cairo', sans-serif;
+  margin: 0;
 }

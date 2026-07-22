@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Browse available properties in Mahmoudia. Apartments and houses for sale and rent with ElShams Real Estate." />
+    <meta property="og:title" content="Available Properties | ElShams Real Estate" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://elshams-real-estate.vercel.app/properties.html" />
+    <meta property="og:image" content="https://elshams-real-estate.vercel.app/assets/elshams-maha-farouk.jpg" />
+    <link rel="icon" href="assets/elshams-maha-farouk.jpg" type="image/jpeg" />
+    <title>Properties | ElShams Real Estate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="elshams-theme.css" />
+  </head>
+  <body>
+    <header class="site-header site-header--dark">
+      <a class="brand" href="index.html"><img class="brand-image" src="assets/elshams-maha-farouk.jpg" alt="ElShams" /><span>ElShams</span></a>
+      <nav aria-label="Main navigation">
+        <a href="index.html" data-i18n="nav_home">الرئيسية</a>
+        <a href="properties.html" data-i18n="nav_properties" class="nav-link--active">الوحدات المتاحة</a>
+        <a href="sell.html" data-i18n="nav_sell">اعرض عقارك</a>
+        <a href="guide.html" data-i18n="nav_guide">دليل المحمودية</a>
+        <a href="about.html" data-i18n="nav_about">عن الشركة والتواصل</a>
+      </nav>
+      <a class="header-cta" href="about.html#contact"><span data-i18n="nav_cta">ابحث عن منزلي</span> <span class="dir-arrow">↗</span></a>
+    </header>
+
+    <main>
+      <section class="property-store" style="padding-top: 60px;">
+        <div class="section-heading" style="text-align: center; margin-bottom: 60px; display: block;">
+          <h1 style="font-family: 'Playfair Display', serif; font-size: 56px; margin-bottom: 16px;"><span data-i18n="nav_properties">الوحدات المتاحة</span></h1>
+          <p style="font-family: 'Cairo', sans-serif; color: var(--muted); max-width: 600px; margin: 0 auto;">تصفح أحدث الشقق والبيوت السكنية المتاحة للبيع أو الإيجار في المحمودية. جميع الوحدات معتمدة ومراجعة من فريقنا لضمان أفضل بيئة لعائلتك.</p>
+        </div>
+
+        <!-- Store Grid pulling ALL properties from Google Sheets -->
+        <div class="store-grid" id="dynamic-store" data-limit="all"></div>
+      </section>
+    </main>
+
+  <footer>
+      <a class="brand" href="index.html"><img class="brand-image" src="assets/elshams-maha-farouk.jpg" alt="ElShams" /><span>ElShams</span></a>
+      <p data-i18n="footer_copy">© 2026 ElShams Real Estate. Made for better beginnings.</p>
+      <p class="site-credit"><span data-i18n="footer_credit">Website by</span> <strong>Amr Ahmed AbdElrheem</strong> · <a href="https://wa.me/201019332065" target="_blank" rel="noopener noreferrer">WhatsApp</a> · <a href="https://www.linkedin.com/in/amr-ahmed-a18aa73b6" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="#" onclick="openLangModal(); return false;" style="color: #e5bf69;">🌐 Change Language</a></p>
+      <div class="footer-social"><a href="https://www.facebook.com/el.shams.408946" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://wa.me/201014973825" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
