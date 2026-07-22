@@ -97,7 +97,19 @@ const translations = {
     modal_text: "بينما يقوم مستشار الشمس بتجهيز خياراتك، تابعنا لمعرفة أحدث منازل المحمودية."
   }
 };
-
+// Function to link Store cards to the Contact Form
+function inquireAbout(propertyName) {
+  const propInput = document.getElementById('requested_property');
+  if (propInput) {
+    propInput.value = propertyName; // Writes the apartment name into the form
+  }
+  
+  // Smooth scroll down to the form
+  const contactSection = document.getElementById('contact');
+  if (contactSection) {
+    contactSection.scrollIntoView({ behavior: 'smooth' });
+  }
+}
 // Language Handling Logic
 const langModal = document.querySelector('#lang-modal');
 

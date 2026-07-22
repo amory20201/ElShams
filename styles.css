@@ -657,3 +657,105 @@ footer div {
   min-width: 150px;
   justify-content: center;
 }
+/* --- STORE SECTION --- */
+.property-store {
+  padding: 100px 6.4vw;
+  background: #fff;
+}
+
+.store-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.store-card {
+  background: var(--sand);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.store-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+}
+
+.card-img-wrapper {
+  position: relative;
+  height: 240px;
+}
+
+.card-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.status-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--ink);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status-badge.rent {
+  background: var(--coral);
+}
+
+.store-card-content {
+  padding: 24px;
+}
+
+.store-card-content .price {
+  color: var(--coral);
+  font-size: 22px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.store-card-content h3 {
+  font-size: 20px;
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-family: 'Cairo', sans-serif;
+}
+
+.store-card-content p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+
+.store-btn {
+  width: 100%;
+  padding: 14px;
+  background: transparent;
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  font: 700 15px 'Cairo', sans-serif;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.store-btn:hover {
+  background: var(--ink);
+  color: var(--lime);
+}
+
+[dir="rtl"] .store-btn {
+  flex-direction: row-reverse;
+}

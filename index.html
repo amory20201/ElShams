@@ -44,7 +44,14 @@
         <div class="hero-copy">
           <h1 data-i18n="hero_title">Find a place<br />that feels like <em>sunshine.</em></h1>
           <p class="hero-text" data-i18n="hero_text">Tell us what home means to you. Our Mahmoudia experts will curate options that match your life, your taste, and your budget.</p>
-          <a href="#contact" class="primary-button"><span data-i18n="hero_btn">Start your search</span> <span class="dir-arrow">→</span></a>
+         <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
+            <a href="#contact" class="primary-button"><span data-i18n="hero_btn">Start your search</span> <span class="dir-arrow">→</span></a>
+            
+            <!-- زرار الملاك مع رسالة التنبيه -->
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeR9ay2VEBjZd7jk9LQHvOT7mlkNySTtpJTGi6mMLXUM3f1OA/viewform?usp=header" target="_blank" class="primary-button" style="background: transparent; border: 2px solid var(--ink); color: var(--ink);" onclick="return confirm('تنبيه: أنت الآن ستقوم بتقديم بياناتك وصور عقارك لشركة الشمس. سيتم مراجعة الطلب من قبل مستشارينا ورفعه على الموقع في أقرب وقت. هل تريد المتابعة؟');">
+              <span style="color: var(--ink); font-family: 'Cairo', sans-serif;">اعرض شقتك للبيع</span> <span class="dir-arrow">↗</span>
+            </a>
+          </div>
         </div>
         <div class="hero-visual" aria-label="ElShams real estate showcase">
           <div class="brand-slider">
@@ -75,6 +82,44 @@
           <div class="promo-overlay">
             <h3 dir="rtl" style="font-family: 'Cairo', sans-serif; margin: 0;">شقق عصرية تناسب عائلتك</h3>
           </div>
+        </div>
+      </section>
+      <!-- سكشن المتجر: الوحدات المتاحة -->
+      <section class="property-store" id="store">
+        <div class="section-heading">
+          <p class="eyebrow"><span></span> حصرياً لدينا</p>
+          <h2>تصفح أحدث <em>الشقق.</em></h2>
+        </div>
+        <div class="store-grid">
+          
+          <!-- الكارت الأول -->
+          <article class="store-card">
+            <div class="card-img-wrapper">
+              <img src="assets/elshams-property.jpg" alt="شقة سكنية" />
+              <span class="status-badge">للبيع</span>
+            </div>
+            <div class="store-card-content">
+              <span class="price" dir="ltr">1,250,000 EGP</span>
+              <h3>شقة 150م سوبر لوكس</h3>
+              <p>3 غرف نوم · 2 حمام · ريسبشن قطعتين، موقع مميز جداً.</p>
+              <button class="store-btn" onclick="inquireAbout('شقة 150م سوبر لوكس - كود 001')">أطلب تفاصيل الشقة <span>←</span></button>
+            </div>
+          </article>
+
+          <!-- الكارت الثاني -->
+          <article class="store-card">
+            <div class="card-img-wrapper">
+              <img src="assets/elshams-property.jpg" alt="شقة سكنية" />
+              <span class="status-badge rent">للإيجار</span>
+            </div>
+            <div class="store-card-content">
+              <span class="price" dir="ltr">3,500 EGP / شهرياً</span>
+              <h3>شقة 120م تشطيب الترا مودرن</h3>
+              <p>غرفتين نوم · حمام · مطبخ أمريكي، جاهزة للسكن الفوري.</p>
+              <button class="store-btn" onclick="inquireAbout('شقة 120م إيجار - كود 002')">أطلب تفاصيل الشقة <span>←</span></button>
+            </div>
+          </article>
+
         </div>
       </section>
 
@@ -119,7 +164,10 @@
           <label><span data-i18n="label_budget">Your budget</span>
             <input id="budget" name="budget" type="text" placeholder="e.g. 1,500,000 EGP" required />
           </label>
-
+<!-- خانة العقار المطلوب (بتتملي أوتوماتيك) -->
+          <label><span data-i18n="label_requested_prop">الوحدة المطلوبة</span>
+            <input id="requested_property" name="requested_property" type="text" value="استفسار عام" readonly style="background-color: rgba(22, 59, 58, 0.05); cursor: not-allowed; color: var(--coral); font-weight: 700;" />
+          </label>
           <button class="submit-button" type="submit"><span data-i18n="form_btn">Connect me with an advisor</span> <span class="dir-arrow">→</span></button>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
