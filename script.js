@@ -131,3 +131,35 @@ if (sellForm) {
     window.open(`https://wa.me/201014973825?text=${whatsappMsg}`, '_blank');
   });
 }
+// --- تشغيل فورم التواصل (البحث عن عقار للمشترين) ---
+const leadForm = document.getElementById('lead-form');
+if (leadForm) {
+  leadForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // عشان الصفحة متعملش ريفريش
+
+    // سحب البيانات اللي العميل كتبها
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const propType = document.getElementById('prop_type').value;
+    const transType = document.getElementById('trans_type').value;
+    const budget = document.getElementById('budget').value;
+    const requestedProp = document.getElementById('requested_property') ? document.getElementById('requested_property').value : 'استفسار عام';
+
+    // تغيير شكل الزرار عشان العميل يحس إنه اشتغل
+    const submitBtn = leadForm.querySelector('.submit-button');
+    if(submitBtn) {
+       submitBtn.innerHTML = '<span style="font-family: \'Cairo\', sans-serif;">جاري تحويلك للواتساب...</span>';
+    }
+
+    // تجميع رسالة الواتساب اللي هتوصلك
+    const whatsappMsg = `أهلاً عقارات الشمس، أنا ${name}.%0Aمحتاج: ${propType} (${transType})%0Aالميزانية في حدود: ${budget}%0Aالرقم: ${phone}%0Aالوحدة المطلوبة: ${requestedProp}`;
+
+    // فتح الواتساب بتاعك بالرسالة جاهزة
+    window.open(`https://wa.me/201014973825?text=${whatsappMsg}`, '_blank');
+    
+    // إرجاع الزرار لشكله الطبيعي بعد الإرسال
+    setTimeout(() => {
+        if(submitBtn) submitBtn.innerHTML = '<span style="font-family: \'Cairo\', sans-serif;">تم الإرسال بنجاح ✔️</span>';
+    }, 2000);
+  });
+}
