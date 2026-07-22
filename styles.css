@@ -935,3 +935,42 @@ footer div {
   border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s;
 }
 .lead-form .submit-button:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(22, 59, 58, 0.3); }
+/* --- Floating WhatsApp Button --- */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 30px;
+  right: 30px;
+  background-color: #25d366;
+  color: #FFF;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.whatsapp-float:hover {
+  background-color: #1ebe57;
+  transform: scale(1.1);
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* عشان على الموبايل ميكنش كبير ومزعج */
+@media screen and (max-width: 767px) {
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+  }
+  .whatsapp-float svg {
+    width: 28px;
+    height: 28px;
+  }
+}
