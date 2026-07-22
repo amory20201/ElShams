@@ -14,6 +14,7 @@ const WA_LINKS = {
 };
 
 const translations = {
+  en: {
     nav_home: "Home",
     nav_properties: "Properties",
     nav_sell: "List Your Property",

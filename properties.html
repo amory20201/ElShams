@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="elshams-theme.css" />
+    <link rel="stylesheet" href="social-modal.css" />
   </head>
   <body>
     <header class="site-header site-header--dark">
@@ -26,6 +27,17 @@
       </nav>
       <a class="header-cta" href="about.html#contact"><span data-i18n="nav_cta">ابحث عن منزلي</span> <span class="dir-arrow">↗</span></a>
     </header>
+
+    <div class="social-modal" id="lang-modal" aria-hidden="true" role="dialog">
+      <div class="modal-backdrop" onclick="closeLangModal()"></div>
+      <section class="modal-card lang-card">
+        <h2>Welcome · <em>مرحباً</em></h2>
+        <div class="lang-actions">
+          <button type="button" class="primary-button" onclick="selectLanguage('en')">English</button>
+          <button type="button" class="primary-button" onclick="selectLanguage('ar')">العربية</button>
+        </div>
+      </section>
+    </div>
 
     <main>
       <section class="property-store" style="padding-top: 60px;">
