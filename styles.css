@@ -909,3 +909,29 @@ footer div {
   font-family: 'Cairo', sans-serif;
   margin: 0;
 }
+/* --- PREMIUM FORM & MODAL FIXES --- */
+#lang-modal {
+  position: fixed; inset: 0; background: rgba(22, 59, 58, 0.8);
+  z-index: 99999; display: flex; justify-content: center; align-items: center;
+}
+.lead-form {
+  background: #ffffff; padding: 40px; border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.05);
+  max-width: 650px; margin: 0 auto;
+}
+.lead-form label { display: block; margin-bottom: 24px; }
+.lead-form label span {
+  display: block; font-family: 'Cairo', sans-serif; font-weight: 700; color: var(--ink); margin-bottom: 10px;
+}
+.lead-form input, .lead-form select, .lead-form textarea {
+  width: 100%; padding: 16px; border: 2px solid #eef1f0; border-radius: 10px;
+  font-family: 'Cairo', sans-serif; transition: 0.3s; background: #fdfdfd;
+}
+.lead-form input:focus, .lead-form select:focus, .lead-form textarea:focus {
+  border-color: var(--ink); outline: none; box-shadow: 0 0 0 4px rgba(22, 59, 58, 0.1);
+}
+.lead-form .submit-button {
+  width: 100%; padding: 18px; background: var(--ink); color: var(--lime);
+  border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s;
+}
+.lead-form .submit-button:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(22, 59, 58, 0.3); }

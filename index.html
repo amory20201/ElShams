@@ -1,90 +1,70 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="ElShams Real Estate — Mahmoudia's trusted property advisor since 2011. Find your perfect home or sell your property with our expert team." />
-    <meta property="og:title" content="ElShams Real Estate | Mahmoudia" />
-    <meta property="og:description" content="Find your perfect home in Mahmoudia. 14+ years of trusted real estate expertise." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://elshams-real-estate.vercel.app" />
-    <meta property="og:image" content="https://elshams-real-estate.vercel.app/assets/elshams-maha-farouk.jpg" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="assets/elshams-maha-farouk.jpg" type="image/jpeg" />
-    <title>ElShams | Your next place, brilliantly found</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <title>عقارات الشمس | شقق وعقارات سكنية في المحمودية</title>
+    <meta name="description" content="عقارات الشمس: دليلك الأول لبيع وشراء الشقق والعقارات السكنية في المحمودية. خيارات تناسب جميع العائلات." />
+    <meta property="og:title" content="عقارات الشمس | استثمر في مسكنك المستقبلي" />
+    <meta property="og:image" content="https://el-shams.vercel.app/assets/elshams-maha-farouk.jpg" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="elshams-theme.css" />
-    <link rel="stylesheet" href="social-modal.css" />
   </head>
   <body>
-    <div class="social-modal" id="lang-modal" aria-hidden="true" role="dialog">
-      <div class="modal-backdrop" onclick="closeLangModal()"></div>
-      <section class="modal-card lang-card">
-        <h2>Welcome · <em>مرحباً</em></h2>
-        <div class="lang-actions">
-          <button type="button" class="primary-button" onclick="selectLanguage('en')">English</button>
-          <button type="button" class="primary-button" onclick="selectLanguage('ar')">العربية</button>
+    <!-- Language Pop-up -->
+    <div id="lang-modal">
+      <div style="background: #fff; padding: 40px; border-radius: 12px; text-align: center; max-width: 90%;">
+        <h2 style="font-size: 32px; margin-bottom: 15px;">Welcome · <em>مرحباً</em></h2>
+        <p style="font-family: 'Cairo', sans-serif; color: #666; margin-bottom: 25px;">Choose your language / اختر لغتك</p>
+        <div style="display: flex; gap: 15px; justify-content: center;">
+          <button class="primary-button" onclick="selectLanguage('en')">English</button>
+          <button class="primary-button" onclick="selectLanguage('ar')" style="font-family: 'Cairo';">العربية</button>
         </div>
-      </section>
+      </div>
     </div>
 
-    <header class="site-header site-header--dark">
+    <header class="site-header" style="position: sticky; background: var(--ink);">
       <a class="brand" href="index.html"><img class="brand-image" src="assets/elshams-maha-farouk.jpg" alt="ElShams" /><span>ElShams</span></a>
-      <nav aria-label="Main navigation">
+      <nav>
         <a href="index.html" data-i18n="nav_home">الرئيسية</a>
         <a href="properties.html" data-i18n="nav_properties">الوحدات المتاحة</a>
         <a href="sell.html" data-i18n="nav_sell">اعرض عقارك</a>
-        <a href="guide.html" data-i18n="nav_guide">دليل المحمودية</a>
-        <a href="about.html" data-i18n="nav_about">عن الشركة والتواصل</a>
+        <a href="about.html" data-i18n="nav_about">عن الشركة</a>
       </nav>
-      <a class="header-cta" href="about.html#contact"><span data-i18n="nav_cta">ابحث عن منزلي</span> <span class="dir-arrow">↗</span></a>
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <button onclick="toggleLanguage()" style="background:transparent; border:1px solid #fff; color:#fff; padding:5px 10px; border-radius:5px; cursor:pointer;">🌐 EN/عربي</button>
+        <a class="header-cta" href="about.html#contact"><span data-i18n="nav_cta">ابحث عن منزلي</span></a>
+      </div>
     </header>
 
-    <main id="top">
+    <main>
       <section class="hero">
-        <div class="sun-orbit orbit-one"></div><div class="sun-orbit orbit-two"></div>
         <div class="hero-copy">
-          <h1 data-i18n="hero_title">Find a place<br />that feels like <em>sunshine.</em></h1>
-          <p class="hero-text" data-i18n="hero_text">Tell us what home means to you. Our Mahmoudia experts will curate options that match your life, your taste, and your budget.</p>
-          <div class="hero-actions">
-            <a href="properties.html" class="primary-button"><span data-i18n="hero_btn">Start your search</span> <span class="dir-arrow">→</span></a>
-            <a href="sell.html" class="primary-button btn--outline-lime"><span data-i18n="sell_btn">اعرض شقتك للبيع</span> <span class="dir-arrow">↗</span></a>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <div class="brand-slider">
-            <figure class="brand-slide is-active"><img src="assets/elshams-maha-farouk.jpg" alt="ElShams" /></figure>
-            <div class="slider-label"><span data-i18n="slider_sub">ELSHAMS</span><p data-i18n="slider_title">Mahmoudia<br /><strong>Real Estate</strong></p></div>
+          <h1 data-i18n="hero_title">اعثر على منزل<br />يشعرك <em>بالدفء.</em></h1>
+          <p class="hero-text" data-i18n="hero_text">أخبرنا ماذا يعني المنزل بالنسبة لك. خبراؤنا جاهزون لخدمتك.</p>
+          <div style="display: flex; gap: 15px; margin-top: 15px;">
+            <a href="properties.html" class="primary-button" data-i18n="hero_btn">ابدأ بحثك</a>
+            <a href="sell.html" class="primary-button" style="background:transparent; border:2px solid var(--lime); color:var(--lime);" data-i18n="sell_btn">اعرض شقتك للبيع</a>
           </div>
         </div>
       </section>
 
-      <section class="stats" id="why-us">
-        <div><strong>14+</strong><span data-i18n="stat_1">Years guiding buyers</span></div>
-        <div><strong>2,400</strong><span data-i18n="stat_2">Families matched</span></div>
-        <div><strong>1</strong><span data-i18n="stat_3">City we know by heart</span></div>
+      <section class="stats">
+        <div><strong>14+</strong><span data-i18n="stat_1">عاماً في إرشاد المشترين</span></div>
+        <div><strong>2,400</strong><span data-i18n="stat_2">عائلة وجدت منزلها</span></div>
       </section>
 
-      <!-- Featured Properties (Shows only 3 latest) -->
       <section class="property-store" style="background: var(--sand);">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow" style="margin-bottom: 20px;"><span></span> أحدث العروض</p>
-            <h2 style="font-family: 'Cairo', sans-serif;" dir="rtl">وحدات سكنية <em>مختارة.</em></h2>
-          </div>
-          <a href="properties.html" class="primary-button btn--outline-ink"><span style="font-family: 'Cairo', sans-serif;">عرض كل العقارات</span></a>
-        </div>
+        <div class="section-heading"><h2 style="font-family: 'Cairo';" data-i18n="props_title">أحدث الوحدات</h2></div>
         <div class="store-grid" id="dynamic-store" data-limit="3"></div>
       </section>
     </main>
 
     <footer>
-      <a class="brand" href="index.html"><img class="brand-image" src="assets/elshams-maha-farouk.jpg" alt="ElShams" /><span>ElShams</span></a>
-      <p data-i18n="footer_copy">© 2026 ElShams Real Estate.</p>
-      <p class="site-credit"><span data-i18n="footer_credit">Website by</span> <strong>Amr Ahmed AbdElrheem</strong> · <a href="https://wa.me/201019332065" target="_blank" rel="noopener noreferrer">WhatsApp</a> · <a href="https://www.linkedin.com/in/amr-ahmed-a18aa73b6" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="#" onclick="openLangModal(); return false;" style="color: #e5bf69;">🌐 Change Language</a></p>
+      <a class="brand" href="index.html"><img class="brand-image" src="assets/elshams-maha-farouk.jpg" /><span>ElShams</span></a>
+      <p data-i18n="footer_copy">© 2026 عقارات الشمس.</p>
+      <p class="site-credit"><span data-i18n="footer_credit">Website by</span> <strong>Amr Ahmed</strong></p>
     </footer>
     <script src="script.js"></script>
   </body>
