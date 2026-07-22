@@ -67,43 +67,40 @@
 
       <section class="contact" style="padding-top: 20px; padding-bottom: 80px; background: transparent;">
         <!-- الفورم الاحترافية الجديدة -->
-        <form id="sell-form" class="lead-form sell-form" style="margin: 0 auto; background: var(--sand); border: 1px solid rgba(22, 59, 58, 0.1);" novalidate>
-
-          <label><span style="font-family: 'Cairo', sans-serif;">اسم المالك بالكامل</span>
+       <form id="sell-form" class="lead-form">
+          <label><span style="font-family: 'Cairo', sans-serif;">الاسم بالكامل</span>
             <input id="sell_name" name="name" type="text" placeholder="الاسم الثنائي" required />
           </label>
-
+          
           <label><span style="font-family: 'Cairo', sans-serif;">رقم الموبايل (واتساب)</span>
             <input id="sell_phone" name="phone" type="tel" placeholder="مثال: 01014973825" required />
           </label>
-
+          
           <label><span style="font-family: 'Cairo', sans-serif;">نوع العقار</span>
             <select id="sell_prop_type" name="prop_type" required>
-              <option value="شقة" selected>شقة سكنية</option>
+              <option value="شقة">شقة سكنية</option>
               <option value="بيت/فيلا">بيت / فيلا كاملة</option>
             </select>
           </label>
-
+          
           <label><span style="font-family: 'Cairo', sans-serif;">العنوان والمواصفات بالتفصيل</span>
-            <textarea id="sell_details" name="requested_property" rows="3" placeholder="اكتب العنوان بالتفصيل، المساحة، عدد الغرف، ونوع التشطيب..." required class="sell-form-textarea"></textarea>
+            <textarea id="sell_details" name="requested_property" rows="3" placeholder="اكتب العنوان بالتفصيل، المساحة، عدد الغرف، ونوع التشطيب..." required style="width: 100%; padding: 14px; border: 1px solid var(--muted); border-radius: 6px; font-family: 'Cairo', sans-serif; resize: vertical;"></textarea>
           </label>
-
+          
           <label><span style="font-family: 'Cairo', sans-serif;">السعر المطلوب للبيع / الإيجار</span>
             <input id="sell_price" name="budget" type="text" placeholder="مثال: 1,500,000 جنيه" required />
           </label>
-
-          <!-- حقل مخفي عشان الداتابيز تعرف إنه بائع مش مشتري -->
+          
+          <!-- حقل مخفي عشان الداتابيز تعرف إنه بائع -->
           <input type="hidden" name="trans_type" value="عقار للبيع (مالك)" />
 
-          <button class="submit-button" type="submit" id="sell-submit-btn"><span style="font-family: 'Cairo', sans-serif;">إرسال بيانات العقار</span> <span class="dir-arrow">←</span></button>
-
-          <!-- رسالة النجاح وزرار الواتساب (مخفيين لحد ما يبعت) -->
+          <button class="submit-button" type="submit" id="sell-submit-btn">
+            <span style="font-family: 'Cairo', sans-serif;">إرسال بيانات العقار</span> <span class="dir-arrow">←</span>
+          </button>
+          
           <div id="sell-success-msg" style="display: none; margin-top: 20px; text-align: center;">
-            <p style="color: #25D366; font-weight: bold; margin-bottom: 15px; font-family: 'Cairo', sans-serif; font-size: 18px;">تم استلام تفاصيل عقارك بنجاح! 🎉</p>
-            <p style="color: var(--ink); margin-bottom: 15px; font-family: 'Cairo', sans-serif;">الخطوة الأخيرة: برجاء إرسال صور العقار على الواتساب لمراجعتها ونشرها.</p>
-            <a href="https://wa.me/201014973825?text=أهلاً،%20لقد%20قمت%20بتسجيل%20عقاري%20على%20موقع%20الشمس%20وهذه%20هي%20الصور:" target="_blank" rel="noopener noreferrer" style="display: inline-block; background: #25D366; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-family: 'Cairo', sans-serif; font-weight: bold;">أرسل الصور عبر الواتساب ↗</a>
+            <p style="color: #25D366; font-weight: bold; font-family: 'Cairo', sans-serif; font-size: 18px;">تم استلام تفاصيل عقارك بنجاح! سيتم مراجعتها والتواصل معك قريباً.</p>
           </div>
-
         </form>
       </section>
     </main>

@@ -70,37 +70,42 @@
           </div>
         </div>
 
-        <form id="lead-form" class="lead-form" novalidate>
-          <label><span data-i18n="label_name">Full name</span><input id="name" name="name" type="text" placeholder="How should we call you?" autocomplete="name" required /></label>
-          <label><span data-i18n="label_phone">Mobile phone</span><input id="phone" name="phone" type="tel" placeholder="e.g. +20 10 1234 5678" autocomplete="tel" required /></label>
-
-          <label><span data-i18n="label_prop_type">Property type</span>
+       <form id="lead-form" class="lead-form" novalidate>
+          <label><span style="font-family: 'Cairo', sans-serif;">الاسم بالكامل</span>
+            <input id="name" name="name" type="text" placeholder="الاسم الثنائي" required />
+          </label>
+          
+          <label><span style="font-family: 'Cairo', sans-serif;">رقم الموبايل (واتساب)</span>
+            <input id="phone" name="phone" type="tel" placeholder="مثال: 01014973825" required />
+          </label>
+          
+          <label><span style="font-family: 'Cairo', sans-serif;">نوع العقار المطلوب</span>
             <select id="prop_type" name="prop_type" required>
-              <option value="" selected disabled data-i18n="opt_prop_default">Select property type</option>
-              <option value="Apartment" data-i18n="opt_prop_apt">Apartment</option>
-              <option value="House" data-i18n="opt_prop_house">House</option>
+              <option value="" selected disabled>اختر نوع العقار</option>
+              <option value="شقة">شقة سكنية</option>
+              <option value="بيت/فيلا">بيت / فيلا كاملة</option>
             </select>
           </label>
 
-          <label><span data-i18n="label_trans_type">Transaction type</span>
+          <label><span style="font-family: 'Cairo', sans-serif;">نوع المعاملة</span>
             <select id="trans_type" name="trans_type" required>
-              <option value="" selected disabled data-i18n="opt_trans_default">Select Rent or Sale</option>
-              <option value="Sale" data-i18n="opt_trans_sale">Buy / Sale</option>
-              <option value="Rent" data-i18n="opt_trans_rent">Rent</option>
+              <option value="" selected disabled>اختر بيع أو إيجار</option>
+              <option value="شراء">شراء</option>
+              <option value="إيجار">إيجار</option>
             </select>
           </label>
 
-          <label><span data-i18n="label_budget">Your budget</span>
-            <input id="budget" name="budget" type="text" placeholder="e.g. 1,500,000 EGP" required />
+          <label><span style="font-family: 'Cairo', sans-serif;">الميزانية المتاحة</span>
+            <input id="budget" name="budget" type="text" placeholder="مثال: 1,500,000 جنيه" required />
           </label>
 
-          <!-- خانة الوحدة المطلوبة -->
           <label><span style="font-family: 'Cairo', sans-serif;">الوحدة المطلوبة (إن وجدت)</span>
-            <input id="requested_property" name="requested_property" type="text" value="استفسار عام" readonly class="requested-property-input" />
+            <input id="requested_property" name="requested_property" type="text" value="استفسار عام" readonly style="background-color: rgba(22, 59, 58, 0.05); cursor: not-allowed; color: var(--coral); font-weight: 700; font-family: 'Cairo', sans-serif;" />
           </label>
 
-          <button class="submit-button" type="submit"><span data-i18n="form_btn">Connect me with an advisor</span> <span class="dir-arrow">→</span></button>
-          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          <button class="submit-button" type="submit">
+            <span style="font-family: 'Cairo', sans-serif;">تواصل مع مستشار عقاري</span> <span class="dir-arrow">←</span>
+          </button>
         </form>
       </section>
     </main>
