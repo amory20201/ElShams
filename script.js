@@ -250,4 +250,50 @@ if (form) {
       button.disabled = false;
     }
   });
+// Function to dynamically load properties from Google Sheets
+async function loadProperties() {
+  const storeGrid = document.getElementById('dynamic-store');
+  if(!storeGrid) return;
+
+  storeGrid.innerHTML = '<p style="text-align:center; width:100%; font-family: Cairo; color: var(--ink);">جاري تحميل أحدث الوحدات...</p>';
+
+  try {
+    // رابط السكريبت بتاعك اللي متوصل بجوجل شيت
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby3caTgOrfODKAJnGEze34S5cELRXJvReXRfsXRk4gme2GyGej_4m5y3z-775XSAwk/exec';
+    
+    const response = await fetch(scriptURL);
+    const properties = await response.json();
+
+    storeGrid.innerHTML = ''; 
+
+    if(properties.length === 0) {
+       storeGrid.innerHTML = '<p style="text-align:center; width:100%; font-family: Cairo; color: var(--muted);">لا توجد وحدات متاحة حالياً، تابعنا قريباً.</p>';
+       return;
+    }
+
+    properties.forEach((prop, index) => {
+      const isRent = prop.status.includes('إيجار') ? 'rent' : '';
+      const cardHTML = `
+        <article class="store-card">
+          <div class="card-img-wrapper">
+            <img src="${prop.image}" alt="${prop.title}" onerror="this.src='assets/elshams-property.jpg'" />
+            <span class="status-badge ${isRent}">${prop.status}</span>
+          </div>
+          <div class="store-card-content">
+            <span class="price" dir="ltr">${prop.price}</span>
+            <h3 dir="rtl">${prop.title}</h3>
+            <p dir="rtl">${prop.desc}</p>
+            <button class="store-btn" onclick="inquireAbout('${prop.title} - كود 00${index+1}')" dir="rtl">أطلب تفاصيل الشقة <span>←</span></button>
+          </div>
+        </article>
+      `;
+      storeGrid.innerHTML += cardHTML;
+    });
+
+  } catch(error) {
+    storeGrid.innerHTML = '<p style="text-align:center; width:100%; color:red; font-family: Cairo;">حدث خطأ أثناء تحميل الوحدات. يرجى تحديث الصفحة.</p>';
+  }
 }
+
+// تشغيل الدالة أوتوماتيك أول ما الموقع يفتح
+window.addEventListener('DOMContentLoaded', loadProperties);}
