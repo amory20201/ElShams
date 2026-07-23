@@ -974,3 +974,8 @@ footer div {
     height: 28px;
   }
 }
+/* --- تغيير لون الكلام جوه زرار الإرسال للأبيض --- */
+.lead-form .submit-button,
+.lead-form .submit-button span {
+  color: #ffffff !important;
+}
