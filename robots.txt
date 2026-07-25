@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://elshams.estate/sitemap.xml
