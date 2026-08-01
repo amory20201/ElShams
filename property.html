@@ -32,7 +32,7 @@
         <h3>عاين وحدتك دلوقتي.. سيب بياناتك وهنكلمك فوراً</h3>
         <form id="property-request-form">
             <input type="text" id="client-name" placeholder="الاسم الكريم" required>
-            <button type="submit" class="submit-btn">إرسال وتواصل</button>
+            <button type="submit" class="submit-btn">إرسال وتواصل مباشر</button>
         </form>
     </div>
 
@@ -68,13 +68,15 @@
 
         loadPropertyDetails();
 
-        // إرسال البيانات والتحويل المباشر لرسايل البروفايل
+        // إرسال البيانات والتحويل المباشر للواتساب
         document.getElementById('property-request-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = document.querySelector('.submit-btn');
             btn.innerText = "جاري الإرسال...";
             
             let clientName = document.getElementById('client-name').value;
+            let propertyTitle = document.getElementById('prop-title').innerText;
+            
             let formData = new FormData();
             formData.append('name', clientName);
             formData.append('property_id', propertyId);
@@ -83,12 +85,14 @@
 
             fetch(scriptURL, { method: 'POST', body: formData })
                 .then(response => {
-                    // حط اليوزر نيم بتاع البروفايل بتاعك هنا مكان YOUR_PROFILE_USERNAME
-                    window.location.href = "https://m.me/YOUR_PROFILE_USERNAME"; 
+                    // رسالة الواتساب الجاهزة
+                    const whatsappMsg = `أهلاً عقارات الشمس، أنا ${clientName}. مهتم بـ: ${propertyTitle}`;
+                    // التحويل لرقمك المباشر
+                    window.location.href = `https://wa.me/201014973825?text=${encodeURIComponent(whatsappMsg)}`;
                 })
                 .catch(error => {
                     alert("حدث خطأ، يرجى المحاولة مرة أخرى.");
-                    btn.innerText = "إرسال وتواصل";
+                    btn.innerText = "إرسال وتواصل مباشر";
                 });
         });
     </script>
