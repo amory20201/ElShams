@@ -172,8 +172,18 @@ document.addEventListener('click', function(e) {
             
             // 2. استبعاد الشقق من قسم البيوت (عشان لو وصف الشقة مكتوب فيه "بيت أهالي")
             if (filterValue === 'بيت') {
-                // بنستبعدها لو العنوان نفسه بادئ بكلمة شقة
                 if (prop.title.includes('شقه') || prop.title.includes('شقة')) return false;
+                return keywords.some(keyword => text.includes(keyword));
+            }
+            
+            // 3. استبعاد البيوت والشقق السكنية من قسم المحلات (عشان لو البيت تحتيه محل)
+            if (filterValue === 'محل') {
+                // لو العنوان الأساسي بيت أو فيلا، ميظهرش في المحلات
+                if (prop.title.includes('بيت') || prop.title.includes('فيلا') || prop.title.includes('منزل')) return false;
+                
+                // لو العنوان شقة، لازم يكون معاها كلمة إداري عشان تظهر هنا
+                if ((prop.title.includes('شقه') || prop.title.includes('شقة')) && !(text.includes('اداري') || text.includes('إداري'))) return false;
+                
                 return keywords.some(keyword => text.includes(keyword));
             }
             
