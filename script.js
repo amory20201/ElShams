@@ -268,3 +268,10 @@ if (leadForm) {
     }
   });
 }
+// فتح وقفل القائمة الجانبية (التلت شرط)
+function toggleMenu() {
+  const menu = document.getElementById('side-menu');
+  if(menu) {
+    menu.classList.toggle('open');
+  }
+}

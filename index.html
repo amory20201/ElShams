@@ -51,7 +51,8 @@
       </div>
     </div>
 
-    <header class="site-header" style="position: sticky; background: var(--ink);">
+    <!-- الهيدر الجديد بعد التعديل (زرار التلت شرط) -->
+    <header class="site-header" style="position: sticky; top: 0; z-index: 1000; background: var(--ink); display: flex; justify-content: space-between; align-items: center; padding: 15px 30px;">
       <a class="brand" href="index.html"><img class="brand-image" src="preview.jpeg" alt="ElShams" /><span>ElShams</span></a>
       <nav>
         <a href="index.html" data-i18n="nav_home">الرئيسية</a>
@@ -59,9 +60,26 @@
         <a href="sell.html" data-i18n="nav_sell">اعرض عقارك</a>
         <a href="about.html" data-i18n="nav_about">عن الشركة</a>
       </nav>
-      <div style="display: flex; gap: 10px; align-items: center;">
-        <button onclick="toggleLanguage()" style="background:transparent; border:1px solid #fff; color:#fff; padding:5px 10px; border-radius:5px; cursor:pointer;">🌐 EN/عربي</button>
-        <a class="header-cta" href="about.html#contact"><span data-i18n="nav_cta">ابحث عن منزلي</span></a>
+      
+      <!-- زرار التلت شرط -->
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <button onclick="toggleMenu()" aria-label="القائمة" style="background: transparent; border: 2px solid #d4af37; color: #d4af37; font-size: 22px; padding: 4px 12px; border-radius: 8px; cursor: pointer;">
+          ☰
+        </button>
+      </div>
+
+      <!-- القائمة الجانبية المنسدلة -->
+      <div id="side-menu" class="side-menu">
+        <button onclick="toggleMenu()" class="close-btn">&times;</button>
+        <div class="menu-content">
+          <a href="index.html">الرئيسية</a>
+          <a href="properties.html">الوحدات المتاحة</a>
+          <a href="sell.html">اعرض عقارك</a>
+          <a href="about.html">عن الشركة</a>
+          <hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;">
+          <a href="about.html#contact" class="menu-cta-btn" style="background: #d4af37; color: #000; padding: 12px; border-radius: 8px; text-align: center; text-decoration: none; font-weight: bold; display: block; margin-bottom: 10px;">🔍 ابحث عن منزلي</a>
+          <button onclick="toggleLanguage()" class="menu-lang-btn" style="background: transparent; border: 1px solid #444; color: #fff; padding: 12px; border-radius: 8px; width: 100%; cursor: pointer; font-family: 'Cairo'; font-size: 16px;">🌐 تغيير اللغة (EN / عربي)</button>
+        </div>
       </div>
     </header>
 
