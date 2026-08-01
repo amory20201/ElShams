@@ -68,7 +68,20 @@
           <p style="font-family: 'Cairo', sans-serif; color: var(--muted); max-width: 600px; margin: 0 auto;">تصفح أحدث الشقق والبيوت السكنية المتاحة للبيع أو الإيجار في المحمودية. جميع الوحدات معتمدة ومراجعة من فريقنا لضمان أفضل بيئة لعائلتك.</p>
         </div>
 
-        <!-- Store Grid pulling ALL properties from Google Sheets -->
+        <!-- زراير الأقسام -->
+<div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap;">
+    <button class="filter-btn active" data-filter="all">الكل</button>
+    <button class="filter-btn" data-filter="شقة">شقق</button>
+    <button class="filter-btn" data-filter="بيت">بيوت وفيلات</button>
+    <button class="filter-btn" data-filter="محل">محلات تجارية</button>
+    <button class="filter-btn" data-filter="أرض">أراضي</button>
+</div>
+
+<!-- ستايل الزراير -->
+<style>
+  .filter-btn { background: #f4f4f4; border: 1px solid #ddd; padding: 8px 25px; border-radius: 30px; cursor: pointer; font-family: 'Cairo'; font-weight: bold; transition: 0.3s; font-size: 16px;}
+  .filter-btn:hover, .filter-btn.active { background: #d4af37; color: #000; border-color: #d4af37; }
+</style><!-- Store Grid pulling ALL properties from Google Sheets -->
         <div class="store-grid" id="dynamic-store" data-limit="all"></div>
       </section>
     </main>

@@ -74,47 +74,89 @@ document.addEventListener('DOMContentLoaded', () => {
   if(typeof loadProperties === 'function') loadProperties();
 });
 
-// Load Properties from Google Sheets (مع زرار عرض التفاصيل الجديد)
+// متغير لحفظ كل العقارات عشان الفلترة
+let allProperties = []; 
+
+// تحميل الداتا من الشيت
 async function loadProperties() {
   const storeGrid = document.getElementById('dynamic-store');
   if(!storeGrid) return;
   const isHomePage = storeGrid.getAttribute('data-limit') === '3';
-  storeGrid.innerHTML = '<p style="text-align:center; width:100%; font-family: Cairo;">جاري تحميل الوحدات السكنية...</p>';
+  storeGrid.innerHTML = '<p style="text-align:center; width:100%; font-family: Cairo;">جاري تحميل الوحدات...</p>';
 
   try {
     const scriptURL = 'https://script.google.com/macros/s/AKfycby3caTgOrfODKAJnGEze34S5cELRXJvReXRfsXRk4gme2GyGej_4m5y3z-775XSAwk/exec';
     const response = await fetch(scriptURL);
-    let properties = await response.json();
-    storeGrid.innerHTML = ''; 
-
-    if(properties.length === 0) {
+    const data = await response.json();
+    
+    // تسجيل العقارات مع رقمها الأصلي عشان صفحة التفاصيل
+    allProperties = data.map((prop, index) => ({ ...prop, originalId: index + 1 }));
+    
+    if(allProperties.length === 0) {
        storeGrid.innerHTML = '<p style="text-align:center; width:100%;">لا توجد وحدات متاحة حالياً.</p>';
        return;
     }
-    if (isHomePage) properties = properties.slice(0, 3);
-    properties.forEach((prop, index) => {
-      const isRent = prop.status.includes('إيجار') ? 'rent' : '';
-      
-      storeGrid.innerHTML += `
-        <article class="store-card">
-          <div class="card-img-wrapper">
-            <img src="${prop.image}" onerror="this.src='assets/elshams-property.jpg'" />
-            <span class="status-badge ${isRent}">${prop.status}</span>
-          </div>
-          <div class="store-card-content">
-            <span class="price" dir="ltr">${prop.price}</span>
-            <h3 dir="rtl">${prop.title}</h3>
-            <p dir="rtl">${prop.desc}</p>
-            <a href="property.html?id=${index + 1}" class="store-btn" dir="rtl" style="text-decoration:none;">عرض التفاصيل والصور <span>←</span></a>
-          </div>
-        </article>`;
-    });
+    
+    // عرض الكل في البداية
+    renderProperties(isHomePage ? allProperties.slice(0, 3) : allProperties);
+
   } catch(error) {
     storeGrid.innerHTML = '<p style="text-align:center; width:100%; color:red;">حدث خطأ أثناء التحميل.</p>';
   }
 }
 
-// 1. فورم الملاك (اعرض عقارك للبيع)
+// دالة رسم الكروت في الموقع
+function renderProperties(propertiesToRender) {
+  const storeGrid = document.getElementById('dynamic-store');
+  storeGrid.innerHTML = ''; 
+
+  if(propertiesToRender.length === 0) {
+      storeGrid.innerHTML = '<p style="text-align:center; width:100%; font-family: Cairo;">لا توجد وحدات في هذا القسم حالياً.</p>';
+      return;
+  }
+
+  propertiesToRender.forEach(prop => {
+    const isRent = prop.status.includes('إيجار') ? 'rent' : '';
+    storeGrid.innerHTML += `
+      <article class="store-card">
+        <div class="card-img-wrapper">
+          <img src="${prop.image}" onerror="this.src='assets/elshams-property.jpg'" />
+          <span class="status-badge ${isRent}">${prop.status}</span>
+        </div>
+        <div class="store-card-content">
+          <span class="price" dir="ltr">${prop.price}</span>
+          <h3 dir="rtl">${prop.title}</h3>
+          <p dir="rtl">${prop.desc}</p>
+          <a href="property.html?id=${prop.originalId}" class="store-btn" dir="rtl" style="text-decoration:none;">عرض التفاصيل والصور <span>←</span></a>
+        </div>
+      </article>`;
+  });
+}
+
+// تفعيل زراير الفلترة للأقسام
+document.addEventListener('click', function(e) {
+  if(e.target.classList.contains('filter-btn')) {
+    // تغيير لون الزرار النشط
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    e.target.classList.add('active');
+
+    const filterValue = e.target.getAttribute('data-filter');
+    
+    // الفلترة بناءً على الكلمة الموجودة في العنوان أو الوصف
+    let filteredProps = [];
+    if (filterValue === 'all') {
+        filteredProps = allProperties;
+    } else {
+        filteredProps = allProperties.filter(prop => 
+            prop.title.includes(filterValue) || 
+            prop.desc.includes(filterValue)
+        );
+    }
+    renderProperties(filteredProps);
+  }
+});
+
+// فورم الملاك (اعرض عقارك للبيع)
 const sellForm = document.getElementById('sell-form');
 if (sellForm) {
   sellForm.addEventListener('submit', async (e) => {
@@ -151,7 +193,7 @@ if (sellForm) {
   });
 }
 
-// 2. فورم المشترين (بيبعت للشيت وبيفتح واتساب بالرسالة جاهزة)
+// فورم المشترين (بيبعت للشيت وبيفتح واتساب بالرسالة جاهزة)
 const leadForm = document.getElementById('lead-form');
 if (leadForm) {
   leadForm.addEventListener('submit', async (e) => {
