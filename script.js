@@ -9,7 +9,7 @@ const translations = {
     footer_copy: "© 2026 ElShams Real Estate. Made for better beginnings.", footer_credit: "Website by",
     props_title: "Available Properties", props_desc: "Browse the latest residential apartments and family homes.",
     sell_title: "List your <em style='color: var(--lime);'>Property.</em>", sell_desc: "Enter your residential unit details below. We connect you with families looking for stability.",
-    sell_name: "Full Name", sell_phone: "WhatsApp Number", sell_type: "Property Type", sell_apt: "Apartment", sell_house: "House / Villa", sell_details: "Address & Specifications", sell_price: "Asking Price", sell_submit: "Submit Property",
+    sell_name: "Full Name", sell_type: "Property Type", sell_apt: "Apartment", sell_house: "House / Villa", sell_details: "Address & Specifications", sell_price: "Asking Price", sell_submit: "Submit Property",
     about_title: "About <em style='color: var(--coral);'>ElShams.</em>", about_p1: "For over 14 years, we have specialized exclusively in residential real estate.", about_p2: "Our goal is finding the place where your family will make its most beautiful memories.",
     contact_title: "Tell us about your <em>dream.</em>", contact_text: "Our residential advisor will contact you soon.", contact_note: "Your details are private.", form_btn: "Connect me with an advisor"
   },
@@ -23,9 +23,9 @@ const translations = {
     footer_copy: "© 2026 عقارات الشمس. صنع لبدايات أفضل.", footer_credit: "تصميم الموقع بواسطة",
     props_title: "الوحدات المتاحة", props_desc: "تصفح أحدث الشقق والبيوت السكنية المتاحة للبيع أو الإيجار.",
     sell_title: "نعرف قيمة <em style='color: var(--lime);'>عقارك السكني.</em>", sell_desc: "أدخل تفاصيل وحدتك السكنية أدناه. نحن نوصلك بالعائلات والباحثين عن الاستقرار.",
-    sell_name: "الاسم بالكامل", sell_phone: "رقم الموبايل (واتساب)", sell_type: "نوع العقار", sell_apt: "شقة سكنية", sell_house: "بيت / فيلا كاملة", sell_details: "العنوان والمواصفات", sell_price: "السعر المطلوب", sell_submit: "إرسال بيانات العقار",
+    sell_name: "الاسم بالكامل", sell_type: "نوع العقار", sell_apt: "شقة سكنية", sell_house: "بيت / فيلا كاملة", sell_details: "العنوان والمواصفات", sell_price: "السعر المطلوب", sell_submit: "إرسال بيانات العقار",
     about_title: "عن مكتب <em style='color: var(--coral);'>الشمس.</em>", about_p1: "تخصصنا بشكل حصري في العقارات السكنية على مدار 14 عاماً.", about_p2: "هدفنا إيجاد المكان الذي ستصنع فيه عائلتك أجمل ذكرياتها.",
-    contact_title: "أخبرنا عن <em>حلمك.</em>", contact_text: "سيتواصل معك أحد مستشارينا العقاريين قريباً.", contact_note: "بياناتك سرية.", form_btn: "تواصل مع مستشار عقاري"
+    contact_title: "أخبرنا عن <em>حلمك.</em>", contact_text: "سيتواصل معك أحد مستشارينا العقاريين قريباً.", contact_note: "بيانات سرية.", form_btn: "تواصل مع مستشار عقاري"
   }
 };
 
@@ -50,11 +50,9 @@ function applyLanguage(lang) {
     if (translations[lang] && translations[lang][key]) el.innerHTML = translations[lang][key];
   });
   
-  // ترجمة الـ Placeholders للفورم
   const isAr = lang === 'ar';
   const placeholders = {
     'sell_name': isAr ? 'الاسم الثنائي' : 'Full Name',
-    'sell_phone': isAr ? 'مثال: 01014973825' : 'e.g. 01014973825',
     'sell_details': isAr ? 'اكتب العنوان بالتفصيل...' : 'Address and details...',
     'sell_price': isAr ? 'مثال: 1,500,000 جنيه' : 'e.g. 1,500,000 EGP'
   };
@@ -76,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if(typeof loadProperties === 'function') loadProperties();
 });
 
-// Load Properties from Google Sheets
+// Load Properties from Google Sheets (مع زرار عرض التفاصيل الجديد)
 async function loadProperties() {
   const storeGrid = document.getElementById('dynamic-store');
   if(!storeGrid) return;
@@ -96,6 +94,7 @@ async function loadProperties() {
     if (isHomePage) properties = properties.slice(0, 3);
     properties.forEach((prop, index) => {
       const isRent = prop.status.includes('إيجار') ? 'rent' : '';
+      
       storeGrid.innerHTML += `
         <article class="store-card">
           <div class="card-img-wrapper">
@@ -106,7 +105,7 @@ async function loadProperties() {
             <span class="price" dir="ltr">${prop.price}</span>
             <h3 dir="rtl">${prop.title}</h3>
             <p dir="rtl">${prop.desc}</p>
-            <a href="about.html#contact?prop=${encodeURIComponent(prop.title)}" class="store-btn" dir="rtl" style="text-decoration:none;">أطلب تفاصيل الشقة <span>←</span></a>
+            <a href="property.html?id=${index + 1}" class="store-btn" dir="rtl" style="text-decoration:none;">عرض التفاصيل والصور <span>←</span></a>
           </div>
         </article>`;
     });
@@ -115,19 +114,15 @@ async function loadProperties() {
   }
 }
 
-// Sell Form Submit to WhatsApp
-// ==============================================================
-// 1. فورم الملاك (اعرض عقارك للبيع) - بيبعت لجوجل شيت بس بصمت
-// ==============================================================
+// 1. فورم الملاك (اعرض عقارك للبيع)
 const sellForm = document.getElementById('sell-form');
 if (sellForm) {
   sellForm.addEventListener('submit', async (e) => {
-    e.preventDefault(); // يمنع الصفحة تحمل من جديد
+    e.preventDefault(); 
     
     const submitBtn = document.getElementById('sell-submit-btn');
     const successMsg = document.getElementById('sell-success-msg');
     
-    // تغيير شكل الزرار وقت التحميل
     if(submitBtn) {
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<span style="font-family: \'Cairo\', sans-serif;">جاري حفظ بيانات العقار...</span>';
@@ -136,18 +131,15 @@ if (sellForm) {
     const formData = new FormData(sellForm);
     
     try {
-      // حط لينك جوجل شيت بتاعك هنا
       const googleSheetURL = 'https://script.google.com/macros/s/AKfycby3caTgOrfODKAJnGEze34S5cELRXJvReXRfsXRk4gme2GyGej_4m5y3z-775XSAwk/exec'; 
       await fetch(googleSheetURL, { method: 'POST', body: formData });
       
-      // إخفاء الزرار وإظهار رسالة نجاح في الموقع بس (من غير واتساب)
       if(submitBtn) submitBtn.style.display = 'none';
       if(successMsg) {
          successMsg.style.display = 'block';
          successMsg.innerHTML = '<p style="color: #25D366; font-weight: bold; font-family: \'Cairo\'; font-size: 18px;">تم استلام تفاصيل عقارك بنجاح! سيتم مراجعتها والتواصل معك قريباً.</p>';
       }
       
-      // تفريغ الفورم
       sellForm.reset();
       
     } catch (error) {
@@ -159,10 +151,7 @@ if (sellForm) {
   });
 }
 
-
-// ==============================================================
-// 2. فورم المشترين (الاستفسار) - بيبعت للشيت وبيفتح واتساب
-// ==============================================================
+// 2. فورم المشترين (بيبعت للشيت وبيفتح واتساب بالرسالة جاهزة)
 const leadForm = document.getElementById('lead-form');
 if (leadForm) {
   leadForm.addEventListener('submit', async (e) => {
@@ -184,10 +173,10 @@ if (leadForm) {
     const requestedProp = document.getElementById('requested_property') ? document.getElementById('requested_property').value : 'استفسار عام';
 
     try {
-      // حط نفس لينك جوجل شيت بتاعك هنا برضه
       const googleSheetURL = 'https://script.google.com/macros/s/AKfycby3caTgOrfODKAJnGEze34S5cELRXJvReXRfsXRk4gme2GyGej_4m5y3z-775XSAwk/exec'; 
       await fetch(googleSheetURL, { method: 'POST', body: formData });
 
+      // تجميع رسالة الواتساب
       const whatsappMsg = `أهلاً عقارات الشمس، أنا ${name}.%0Aمحتاج: ${propType} (${transType})%0Aالميزانية في حدود: ${budget}%0Aالرقم: ${phone}%0Aالوحدة المطلوبة: ${requestedProp}`;
       
       if(submitBtn) {
@@ -195,6 +184,7 @@ if (leadForm) {
          submitBtn.disabled = false;
       }
       
+      // فتح الواتساب مباشر
       window.open(`https://wa.me/201014973825?text=${whatsappMsg}`, '_blank');
       leadForm.reset();
 

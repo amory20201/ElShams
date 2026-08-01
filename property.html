@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل العقار | عقارات الشمس</title>
+    <!-- استدعاء ملف الستايل الأساسي -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- تنسيقات صفحة التفاصيل مدمجة هنا للسهولة -->
+    <style>
+        .property-container { max-width: 800px; margin: 20px auto; padding: 20px; text-align: center; }
+        .image-gallery img { max-width: 100%; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .price-tag { color: #d4af37; font-size: 26px; font-weight: bold; margin: 15px 0; }
+        .prop-desc { font-size: 18px; line-height: 1.8; margin-bottom: 30px; }
+        .request-form-section { background: #1a1a1a; padding: 25px; border-radius: 10px; color: white; max-width: 500px; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .submit-btn { background: #d4af37; color: #000; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; width: 100%; font-size: 18px; font-weight: bold; margin-top: 15px; transition: 0.3s; }
+        .submit-btn:hover { background: #b5952f; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+    </style>
+</head>
+<body>
+
+    <!-- عرض تفاصيل الشقة -->
+    <div class="property-container">
+        <h1 id="prop-title">جاري تحميل التفاصيل...</h1>
+        <div id="prop-images" class="image-gallery"></div>
+        <div class="prop-info">
+            <h3 id="prop-price" class="price-tag"></h3>
+            <p id="prop-desc" class="prop-desc"></p>
+        </div>
+    </div>
+
+    <!-- فورم التواصل -->
+    <div class="request-form-section">
+        <h3>مهتم بالعقار؟ سيب اسمك للتواصل</h3>
+        <form id="property-request-form">
+            <input type="text" id="client-name" placeholder="الاسم الكريم" required>
+            <button type="submit" class="submit-btn">إرسال وتواصل مباشر</button>
+        </form>
+    </div>
+
+    <!-- كود الجافا سكريبت مدمج هنا للسرعة -->
+    <script>
+        // 1. داتا الشقق بتاعتك
+        const propertiesData = {
+            "1": {
+                title: "شقة 120 متر الترا سوبر لوكس",
+                price: "850,000 جنيه",
+                desc: "شقة مميزة جداً، 3 غرف ورسيبشن قطعتين، تشطيب حديث جاهزة على السكن فوراً. موقع استراتيجي.",
+                images: ["img1.jpg", "img2.jpg"] // حط أسماء صور الشقة الأولى هنا
+            },
+            "2": {
+                title: "شقة 100 متر نص تشطيب",
+                price: "600,000 جنيه",
+                desc: "شقة دور تالت، واجهة بحرية، تقسيم ممتاز للغرف.",
+                images: ["img3.jpg", "img4.jpg"] // حط أسماء صور الشقة التانية هنا
+            }
+        };
+
+        // 2. سحب رقم الشقة من اللينك وعرض بياناتها
+        const urlParams = new URLSearchParams(window.location.search);
+        const propertyId = urlParams.get('id');
+        const property = propertiesData[propertyId];
+
+        if (property) {
+            document.getElementById('prop-title').innerText = property.title;
+            document.getElementById('prop-price').innerText = property.price;
+            document.getElementById('prop-desc').innerText = property.desc;
+            
+            const gallery = document.getElementById('prop-images');
+            property.images.forEach(imgSrc => {
+                let imgTag = document.createElement('img');
+                imgTag.src = imgSrc;
+                gallery.appendChild(imgTag);
+            });
+        } else {
+            document.getElementById('prop-title').innerText = "عفواً، العقار غير موجود";
+            document.querySelector('.request-form-section').style.display = 'none';
+        }
+
+        // 3. التعامل مع إرسال الفورم
+        document.getElementById('property-request-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = document.querySelector('.submit-btn');
+            btn.innerText = "جاري الإرسال...";
+            
+            let clientName = document.getElementById('client-name').value;
+            let formData = new FormData();
+            formData.append('name', clientName);
+            formData.append('property_id', propertyId);
+
+            // !! حط لينك جوجل شيت بتاعك بين علامتين التنصيص هنا !!
+            const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE'; 
+
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    // التحويل لرسائل الماسنجر مباشر (بدون أرقام تواصل)
+                    // استبدل YOUR_ID باليوزر نيم بتاعك
+                    window.location.href = "https://m.me/YOUR_ID"; 
+                })
+                .catch(error => {
+                    alert("حدث خطأ، يرجى المحاولة مرة أخرى.");
+                    btn.innerText = "إرسال وتواصل مباشر";
+                });
+        });
+    </script>
+</body>
+</html>
