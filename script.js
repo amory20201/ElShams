@@ -105,7 +105,7 @@ async function loadProperties() {
   }
 }
 
-// دالة رسم الكروت في الموقع
+// دالة رسم الكروت في الموقع (متعدلة عشان الكارت ميفرشحش)
 function renderProperties(propertiesToRender) {
   const storeGrid = document.getElementById('dynamic-store');
   storeGrid.innerHTML = ''; 
@@ -117,8 +117,9 @@ function renderProperties(propertiesToRender) {
 
   propertiesToRender.forEach(prop => {
     const isRent = prop.status.includes('إيجار') ? 'rent' : '';
+    
     storeGrid.innerHTML += `
-      <article class="store-card">
+      <article class="store-card" style="max-width: 380px; width: 100%; margin: 0 auto; justify-self: center;">
         <div class="card-img-wrapper">
           <img src="${prop.image}" onerror="this.src='assets/elshams-property.jpg'" />
           <span class="status-badge ${isRent}">${prop.status}</span>
@@ -147,48 +148,37 @@ document.addEventListener('click', function(e) {
     if (filterValue === 'all') {
         filteredProps = allProperties;
     } else {
-        let keywords = [];
-        
-        if (filterValue === 'شقة') {
-            keywords = ['شقه', 'شقة'];
-        } else if (filterValue === 'محل') {
-            keywords = ['محل', 'مكتب', 'شقه اداري', 'شقة اداري', 'شقه إداري', 'شقة إداري', 'صيدليه', 'صيدلية'];
-        } else if (filterValue === 'بيت') {
-            keywords = ['بيت', 'فيلا', 'منزل'];
-        } else if (filterValue === 'أرض') {
-            keywords = ['ارض', 'أرض'];
-        }
-        
         // الفلترة جوه العنوان والوصف
-       // الفلترة جوه العنوان والوصف
         filteredProps = allProperties.filter(prop => {
             const text = prop.title + " " + prop.desc;
             
-            // 1. استبعاد الإداري والمحلات من قسم الشقق السكنية
+            // 1. قسم الشقق: أي عقار فيه كلمة شقة بيظهر هنا فوراً
             if (filterValue === 'شقة') {
-                if (text.includes('اداري') || text.includes('إداري') || text.includes('محل')) return false;
-                return keywords.some(keyword => text.includes(keyword));
+                return ['شقه', 'شقة'].some(keyword => text.includes(keyword));
             }
             
-            // 2. استبعاد الشقق من قسم البيوت (عشان لو وصف الشقة مكتوب فيه "بيت أهالي")
-            if (filterValue === 'بيت') {
-                if (prop.title.includes('شقه') || prop.title.includes('شقة')) return false;
-                return keywords.some(keyword => text.includes(keyword));
-            }
-            
-            // 3. استبعاد البيوت والشقق السكنية من قسم المحلات (عشان لو البيت تحتيه محل)
+            // 2. قسم المحلات (التجاري والإداري)
             if (filterValue === 'محل') {
-                // لو العنوان الأساسي بيت أو فيلا، ميظهرش في المحلات
+                // استبعاد البيوت والفيلات حتى لو مكتوب تحتها محل
                 if (prop.title.includes('بيت') || prop.title.includes('فيلا') || prop.title.includes('منزل')) return false;
                 
-                // لو العنوان شقة، لازم يكون معاها كلمة إداري عشان تظهر هنا
-                if ((prop.title.includes('شقه') || prop.title.includes('شقة')) && !(text.includes('اداري') || text.includes('إداري'))) return false;
-                
-                return keywords.some(keyword => text.includes(keyword));
+                // البحث عن أي كلمة تدل على الإداري أو التجاري
+                return ['محل', 'مكتب', 'اداري', 'إداري', 'صيدليه', 'صيدلية', 'تجاري'].some(keyword => text.includes(keyword));
             }
             
-            // لأي قسم تاني
-            return keywords.some(keyword => text.includes(keyword));
+            // 3. قسم البيوت
+            if (filterValue === 'بيت') {
+                // استبعاد الشقق حتى لو الوصف فيه "بيت أهالي"
+                if (prop.title.includes('شقه') || prop.title.includes('شقة')) return false;
+                return ['بيت', 'فيلا', 'منزل'].some(keyword => text.includes(keyword));
+            }
+            
+            // 4. قسم الأراضي
+            if (filterValue === 'أرض') {
+                return ['ارض', 'أرض'].some(keyword => text.includes(keyword));
+            }
+            
+            return false;
         });
     }
     
