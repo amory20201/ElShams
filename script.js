@@ -160,15 +160,24 @@ document.addEventListener('click', function(e) {
         }
         
         // الفلترة جوه العنوان والوصف
+       // الفلترة جوه العنوان والوصف
         filteredProps = allProperties.filter(prop => {
             const text = prop.title + " " + prop.desc;
             
-            // استبعاد الإداري من قسم الشقق السكنية
+            // 1. استبعاد الإداري والمحلات من قسم الشقق السكنية
             if (filterValue === 'شقة') {
-                if (text.includes('اداري') || text.includes('إداري')) return false;
+                if (text.includes('اداري') || text.includes('إداري') || text.includes('محل')) return false;
                 return keywords.some(keyword => text.includes(keyword));
             }
             
+            // 2. استبعاد الشقق من قسم البيوت (عشان لو وصف الشقة مكتوب فيه "بيت أهالي")
+            if (filterValue === 'بيت') {
+                // بنستبعدها لو العنوان نفسه بادئ بكلمة شقة
+                if (prop.title.includes('شقه') || prop.title.includes('شقة')) return false;
+                return keywords.some(keyword => text.includes(keyword));
+            }
+            
+            // لأي قسم تاني
             return keywords.some(keyword => text.includes(keyword));
         });
     }
