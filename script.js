@@ -89,7 +89,7 @@ async function loadProperties() {
     const response = await fetch(scriptURL);
     const data = await response.json();
     
-    // تسجيل العقارات مع رقمها الأصلي عشان صفحة التفاصيل
+    // تسجيل العقارات مع رقمها الأصلي عشان التفاصيل
     allProperties = data.map((prop, index) => ({ ...prop, originalId: index + 1 }));
     
     if(allProperties.length === 0) {
@@ -133,7 +133,7 @@ function renderProperties(propertiesToRender) {
   });
 }
 
-// تفعيل زراير الفلترة للأقسام
+// تفعيل زراير الفلترة للأقسام بذكاء
 document.addEventListener('click', function(e) {
   if(e.target.classList.contains('filter-btn')) {
     // تغيير لون الزرار النشط
@@ -142,16 +142,37 @@ document.addEventListener('click', function(e) {
 
     const filterValue = e.target.getAttribute('data-filter');
     
-    // الفلترة بناءً على الكلمة الموجودة في العنوان أو الوصف
     let filteredProps = [];
+    
     if (filterValue === 'all') {
         filteredProps = allProperties;
     } else {
-        filteredProps = allProperties.filter(prop => 
-            prop.title.includes(filterValue) || 
-            prop.desc.includes(filterValue)
-        );
+        let keywords = [];
+        
+        if (filterValue === 'شقة') {
+            keywords = ['شقه', 'شقة'];
+        } else if (filterValue === 'محل') {
+            keywords = ['محل', 'مكتب', 'شقه اداري', 'شقة اداري', 'شقه إداري', 'شقة إداري', 'صيدليه', 'صيدلية'];
+        } else if (filterValue === 'بيت') {
+            keywords = ['بيت', 'فيلا', 'منزل'];
+        } else if (filterValue === 'أرض') {
+            keywords = ['ارض', 'أرض'];
+        }
+        
+        // الفلترة جوه العنوان والوصف
+        filteredProps = allProperties.filter(prop => {
+            const text = prop.title + " " + prop.desc;
+            
+            // استبعاد الإداري من قسم الشقق السكنية
+            if (filterValue === 'شقة') {
+                if (text.includes('اداري') || text.includes('إداري')) return false;
+                return keywords.some(keyword => text.includes(keyword));
+            }
+            
+            return keywords.some(keyword => text.includes(keyword));
+        });
     }
+    
     renderProperties(filteredProps);
   }
 });
