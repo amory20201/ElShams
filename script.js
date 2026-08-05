@@ -77,6 +77,22 @@ document.addEventListener('DOMContentLoaded', () => {
 // متغير لحفظ كل العقارات عشان الفلترة
 let allProperties = []; 
 
+const sheetEndpoint = 'https://script.google.com/macros/s/AKfycby3caTgOrfODKAJnGEze34S5cELRXJvReXRfsXRk4gme2GyGej_4m5y3z-775XSAwk/exec';
+
+function getFreshSheetUrl() {
+  const url = new URL(sheetEndpoint);
+  url.searchParams.set('cacheBust', Date.now().toString());
+  return url.toString();
+}
+
+function getDisplayImageUrl(value) {
+  const fallback = 'assets/elshams-property.jpg';
+  if (!value) return fallback;
+  const source = String(value).trim();
+  const driveMatch = source.match(/(?:\/d\/|[?&]id=)([-\w]{20,})/);
+  return driveMatch ? `https://drive.google.com/uc?export=view&id=${driveMatch[1]}` : source;
+}
+
 // تحميل الداتا من الشيت
 async function loadProperties() {
   const storeGrid = document.getElementById('dynamic-store');
@@ -85,8 +101,8 @@ async function loadProperties() {
   storeGrid.innerHTML = '<p style="text-align:center; width:100%; font-family: Cairo;">جاري تحميل الوحدات...</p>';
 
   try {
-    const scriptURL = 'https://script.google.com/macros/s/AKfycby3caTgOrfODKAJnGEze34S5cELRXJvReXRfsXRk4gme2GyGej_4m5y3z-775XSAwk/exec';
-    const response = await fetch(scriptURL);
+    const response = await fetch(getFreshSheetUrl(), { cache: 'no-store' });
+    if (!response.ok) throw new Error('Unable to load the property sheet');
     const data = await response.json();
     
     // تسجيل العقارات مع رقمها الأصلي عشان التفاصيل
@@ -121,7 +137,7 @@ function renderProperties(propertiesToRender) {
     storeGrid.innerHTML += `
       <article class="store-card" style="max-width: 380px; width: 100%; margin: 0 auto; justify-self: center;">
         <div class="card-img-wrapper">
-          <img src="${prop.image}" onerror="this.src='assets/elshams-property.jpg'" />
+          <img src="${getDisplayImageUrl(prop.image)}" onerror="this.src='assets/elshams-property.jpg'" />
           <span class="status-badge ${isRent}">${prop.status}</span>
         </div>
         <div class="store-card-content">

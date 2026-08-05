@@ -39,12 +39,26 @@
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const propertyId = parseInt(urlParams.get('id'));
+        const sheetEndpoint = 'https://script.google.com/macros/s/AKfycby3caTgOrfODKAJnGEze34S5cELRXJvReXRfsXRk4gme2GyGej_4m5y3z-775XSAwk/exec';
+
+        function getFreshSheetUrl() {
+            const url = new URL(sheetEndpoint);
+            url.searchParams.set('cacheBust', Date.now().toString());
+            return url.toString();
+        }
+
+        function getDisplayImageUrl(value) {
+            if (!value) return 'assets/elshams-property.jpg';
+            const source = String(value).trim();
+            const driveMatch = source.match(/(?:\/d\/|[?&]id=)([-\w]{20,})/);
+            return driveMatch ? `https://drive.google.com/uc?export=view&id=${driveMatch[1]}` : source;
+        }
 
         // سحب بيانات الشقة من جوجل شيت
         async function loadPropertyDetails() {
             try {
-                const scriptURL = 'https://script.google.com/macros/s/AKfycby3caTgOrfODKAJnGEze34S5cELRXJvReXRfsXRk4gme2GyGej_4m5y3z-775XSAwk/exec';
-                const response = await fetch(scriptURL);
+                const response = await fetch(getFreshSheetUrl(), { cache: 'no-store' });
+                if (!response.ok) throw new Error('Unable to load the property sheet');
                 const properties = await response.json();
                 
                 // تحديد الشقة بناءً على الرقم اللي في اللينك
@@ -56,7 +70,7 @@
                     document.getElementById('prop-desc').innerText = property.desc;
                     
                     const gallery = document.getElementById('prop-images');
-                    gallery.innerHTML = `<img src="${property.image}" onerror="this.src='assets/elshams-property.jpg'" style="max-width:100%; border-radius:10px;">`;
+                    gallery.innerHTML = `<img src="${getDisplayImageUrl(property.image)}" onerror="this.src='assets/elshams-property.jpg'" style="max-width:100%; border-radius:10px;">`;
                 } else {
                     document.getElementById('prop-title').innerText = "عفواً، العقار غير موجود";
                     document.querySelector('.request-form-section').style.display = 'none';
